@@ -37,8 +37,6 @@ CoinFam is a modern cryptocurrency tracking application inspired by CoinGecko, b
 
 
 
-Experience the application live at: CoinFam
-
 💻 Getting Started
 
 -  Prerequisites
