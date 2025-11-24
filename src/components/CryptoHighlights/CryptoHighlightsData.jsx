@@ -251,10 +251,8 @@ const CryptoHighlightsData = () => {
             />
           </div>
         </div>
-        <div className="  mt-[40vh] xlarge:ml-[5.1vw] 2xlarge:ml-[4.8vw]">
-          <Footer />
-        </div>
       </div>
+      <Footer />
     </>
   );
 };

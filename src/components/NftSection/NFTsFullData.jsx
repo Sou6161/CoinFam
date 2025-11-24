@@ -271,7 +271,7 @@ const NFTsFullData = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <><div className="min-h-screen bg-black">
       <OnlyHeaderComp />
       <MainPageMarquee />
 
@@ -282,16 +282,14 @@ const NFTsFullData = () => {
             <img
               src={NFTsData?.banner_image}
               alt="Banner"
-              className="w-full h-48 object-cover rounded-xl"
-            />
+              className="w-full h-48 object-cover rounded-xl" />
           )}
 
           <div className="mt-4 flex items-center">
             <img
               src={NFTsData?.image?.small}
               alt={NFTsData?.name}
-              className="w-16 h-16 rounded-full border-4 border-black"
-            />
+              className="w-16 h-16 rounded-full border-4 border-black" />
             <h1 className="ml-4 text-3xl font-bold">{NFTsData?.name}</h1>
           </div>
 
@@ -320,29 +318,23 @@ const NFTsFullData = () => {
           <div className="bg-gray-900 rounded-xl overflow-hidden">
             <StatisticRow
               label="Market Cap"
-              value={`${NFTsData?.market_cap?.native_currency?.toLocaleString()} ETH`}
-            />
+              value={`${NFTsData?.market_cap?.native_currency?.toLocaleString()} ETH`} />
             <StatisticRow
               label="24h Volume"
-              value={`${NFTsData?.volume_24h?.native_currency?.toLocaleString()} ETH`}
-            />
+              value={`${NFTsData?.volume_24h?.native_currency?.toLocaleString()} ETH`} />
             <StatisticRow label="24h Sales" value={NFTsData?.one_day_sales} />
             <StatisticRow
               label="24h Average Price"
-              value={`${NFTsData?.one_day_average_sale_price?.toFixed(2)} ETH`}
-            />
+              value={`${NFTsData?.one_day_average_sale_price?.toFixed(2)} ETH`} />
             <StatisticRow
               label="Unique Owners"
-              value={NFTsData?.number_of_unique_addresses?.toLocaleString()}
-            />
+              value={NFTsData?.number_of_unique_addresses?.toLocaleString()} />
             <StatisticRow
               label="Total Supply"
-              value={NFTsData?.total_supply?.toLocaleString()}
-            />
+              value={NFTsData?.total_supply?.toLocaleString()} />
             <StatisticRow
               label="All-Time High"
-              value={`${NFTsData?.ath?.native_currency?.toLocaleString()} ETH`}
-            />
+              value={`${NFTsData?.ath?.native_currency?.toLocaleString()} ETH`} />
           </div>
         </section>
 
@@ -354,33 +346,28 @@ const NFTsFullData = () => {
               <StatisticRow
                 label="Website"
                 value={NFTsData.links.homepage}
-                isLink={true}
-              />
+                isLink={true} />
             )}
             {NFTsData?.links?.discord && (
               <StatisticRow
                 label="Discord"
                 value={NFTsData.links.discord}
-                isLink={true}
-              />
+                isLink={true} />
             )}
             {NFTsData?.links?.twitter && (
               <StatisticRow
                 label="Twitter"
                 value={NFTsData.links.twitter}
-                isLink={true}
-              />
+                isLink={true} />
             )}
             <StatisticRow
               label="Explorer"
               isExplorer={true}
-              explorers={explorers}
-            />
+              explorers={explorers} />
             {NFTsData?.asset_platform_id && (
               <StatisticRow
                 label="Platform"
-                value={NFTsData.asset_platform_id.toUpperCase()}
-              />
+                value={NFTsData.asset_platform_id.toUpperCase()} />
             )}
             {NFTsData?.contract_address && (
               <StatisticRow
@@ -388,8 +375,7 @@ const NFTsFullData = () => {
                 value={`${NFTsData.contract_address.slice(
                   0,
                   6
-                )}...${NFTsData.contract_address.slice(-4)}`}
-              />
+                )}...${NFTsData.contract_address.slice(-4)}`} />
             )}
             {NFTsData?.id && (
               <StatisticRow label="API ID" value={NFTsData.id} />
@@ -398,8 +384,7 @@ const NFTsFullData = () => {
               <StatisticRow
                 label="OpenSea"
                 value={NFTsData.links.opensea}
-                isLink={true}
-              />
+                isLink={true} />
             )}
           </div>
         </section>
@@ -435,8 +420,7 @@ const NFTsFullData = () => {
                       <p
                         key={pIndex}
                         className="text-gray-300 leading-relaxed mt-5"
-                        dangerouslySetInnerHTML={{ __html: paragraph }}
-                      />
+                        dangerouslySetInnerHTML={{ __html: paragraph }} />
                     ))}
                   </div>
                 ))}
@@ -470,8 +454,7 @@ const NFTsFullData = () => {
           </h1>
         </div>
       </main>
-      <Footer />
-    </div>
+    </div><Footer /></>
   );
 };
 

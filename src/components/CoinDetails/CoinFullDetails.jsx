@@ -183,6 +183,11 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
     (category) => !category?.includes("Ecosystem")
   );
 
+  // Scroll to top when component mounts or coin id changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth);
@@ -1888,10 +1893,8 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             .
           </p>
         </div>
-        <div className=" ml-4 xlarge:mt-[15vh] xlarge:ml-[6.6vw]    xlarge:relative bg-gradient-to-r from-gray-900 to-black">
-          <Footer />
-        </div>
       </div>
+      <Footer />
     </>
   );
 };

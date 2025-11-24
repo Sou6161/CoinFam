@@ -33,8 +33,8 @@ const LatestArticlesData = () => {
   return (
     <div className="py-8 px-4">
       <div className="flex justify-center mb-8">
-        <button className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg transition-all duration-300 ease-out hover:scale-105">
-          <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+        <button className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-lg text-white bg-gradient-to-r from-blue-500 to-teal-600 shadow-lg transition-all duration-300 ease-out hover:scale-105">
+          <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
           <MdArticle className="w-6 h-6 mr-2 relative z-10" />
           <span className="relative z-10">Latest Crypto Articles</span>
         </button>
@@ -99,12 +99,12 @@ const LatestArticlesData = () => {
               window.location.href = "/learn/crypto-articles";
             }}
           >
-            <button className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-bold rounded-lg text-white bg-gradient-to-r from-purple-600 to-blue-500 shadow-lg transition-all duration-300 ease-out hover:scale-105">
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-700 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+            <button className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-bold rounded-lg text-white bg-gradient-to-r from-teal-600 to-blue-500 shadow-lg transition-all duration-300 ease-out hover:scale-105">
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-teal-700 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
               <span className="relative z-10">See More Articles</span>
               <div className="relative z-10 w-8 h-8 ml-2 flex items-center justify-center">
-                <div className="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-purple-400 opacity-75"></div>
-                <div className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></div>
+                <div className="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-teal-400 opacity-75"></div>
+                <div className="relative inline-flex rounded-full h-3 w-3 bg-teal-500"></div>
               </div>
             </button>
           </Link>

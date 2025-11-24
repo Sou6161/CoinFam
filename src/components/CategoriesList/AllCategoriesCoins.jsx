@@ -480,10 +480,8 @@ const AllCategoriesCoins = () => {
           </button>
         </div>
 
-        <div className="mt-5">
-          <Footer />
-        </div>
       </div>
+      <Footer />
       <RemoveDialog
         isOpen={showRemoveDialog}
         onClose={handleRemoveCancel}

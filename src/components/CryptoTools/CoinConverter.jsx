@@ -516,7 +516,7 @@ const CoinConverter = () => {
   };
 
   return (
-    <>
+    <><>
       <div className="bg-black">
         <OnlyHeaderComp />
         <MainPageMarquee />
@@ -537,8 +537,7 @@ const CoinConverter = () => {
               onChange={(e) => setAmount(e.target.value)}
               className="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-white"
               placeholder="1.00"
-              min="0"
-            />
+              min="0" />
           </div>
 
           <div className="mb-6 relative" ref={coinDropdownRef}>
@@ -550,40 +549,33 @@ const CoinConverter = () => {
               onClick={() => {
                 setIsOpen(!isOpen);
                 setIsOpenFiatCurrency(false); // Close other dropdown
-              }}
+              } }
             >
               <div className="flex items-center">
                 <img
                   src={coins.find((coin) => coin.name === selectedCoin)?.image}
                   alt={selectedCoin}
-                  className="w-6 h-6 mr-2"
-                />
+                  className="w-6 h-6 mr-2" />
                 {selectedCoin}
               </div>
               <IoIosArrowDown
-                className={`text-gray-400 transform transition-transform duration-200 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
-              />
+                className={`text-gray-400 transform transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
             </div>
             {isOpen && (
               <div className="absolute z-50 w-full mt-1 bg-gray-700 border border-gray-600 rounded-lg max-h-60 overflow-y-auto shadow-lg">
                 {Object.keys(exchangeRates).map((coinName) => (
                   <div
                     key={coinName}
-                    className={`flex items-center p-3 hover:bg-gray-600 cursor-pointer transition-colors ${
-                      selectedCoin === coinName ? "bg-gray-600" : ""
-                    }`}
+                    className={`flex items-center p-3 hover:bg-gray-600 cursor-pointer transition-colors ${selectedCoin === coinName ? "bg-gray-600" : ""}`}
                     onClick={() => {
                       setSelectedCoin(coinName);
                       setIsOpen(false);
-                    }}
+                    } }
                   >
                     <img
                       src={coins.find((coin) => coin.name === coinName)?.image}
                       alt={coinName}
-                      className="w-6 h-6 mr-2"
-                    />
+                      className="w-6 h-6 mr-2" />
                     {coinName}
                     {selectedCoin === coinName && (
                       <MdCheck className="ml-auto text-green-500" />
@@ -603,27 +595,20 @@ const CoinConverter = () => {
               onClick={() => {
                 setIsOpenFiatCurrency(!isOpenFiatCurrency);
                 setIsOpen(false); // Close other dropdown
-              }}
+              } }
             >
               <div className="flex items-center">
                 <img
-                  src={
-                    fiatCurrencies.find(
-                      (currency) =>
-                        `${currency.name} (${currency.code})` ===
-                        selectedFiatCurrency
-                    )?.flag
-                  }
+                  src={fiatCurrencies.find(
+                    (currency) => `${currency.name} (${currency.code})` ===
+                      selectedFiatCurrency
+                  )?.flag}
                   alt={selectedFiatCurrency}
-                  className="w-6 h-6 mr-2"
-                />
+                  className="w-6 h-6 mr-2" />
                 {selectedFiatCurrency}
               </div>
               <IoIosArrowDown
-                className={`text-gray-400 transform transition-transform duration-200 ${
-                  isOpenFiatCurrency ? "rotate-180" : ""
-                }`}
-              />
+                className={`text-gray-400 transform transition-transform duration-200 ${isOpenFiatCurrency ? "rotate-180" : ""}`} />
             </div>
             {isOpenFiatCurrency && (
               <div className="absolute z-50 w-full mt-1 bg-gray-700 border border-gray-600 rounded-lg max-h-60 overflow-y-auto shadow-lg">
@@ -632,21 +617,18 @@ const CoinConverter = () => {
                   return (
                     <div
                       key={currency.code}
-                      className={`flex items-center p-3 hover:bg-gray-600 cursor-pointer transition-colors ${
-                        selectedFiatCurrency === currencyName
+                      className={`flex items-center p-3 hover:bg-gray-600 cursor-pointer transition-colors ${selectedFiatCurrency === currencyName
                           ? "bg-gray-600"
-                          : ""
-                      }`}
+                          : ""}`}
                       onClick={() => {
                         setSelectedFiatCurrency(currencyName);
                         setIsOpenFiatCurrency(false);
-                      }}
+                      } }
                     >
                       <img
                         src={currency.flag}
                         alt={currencyName}
-                        className="w-6 h-6 mr-2"
-                      />
+                        className="w-6 h-6 mr-2" />
                       {currencyName}
                       {selectedFiatCurrency === currencyName && (
                         <MdCheck className="ml-auto text-green-500" />
@@ -672,10 +654,7 @@ const CoinConverter = () => {
           </div>
         </div>
       </div>
-      <div className=" -mt-16 ml-4 xlarge:ml-[6.6vw] 2xlarge:ml-[5.7vw] bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
-        <Footer />
-      </div>
-    </>
+    </><Footer /></>
   );
 };
 

@@ -182,10 +182,8 @@ const CryptoExchanges = () => {
             </>
           )}
         </div>
-        <div className=" ml-4 xlarge:ml-[6.5vw] 2xlarge:ml-[5.7vw]">
-          <Footer/>   
-        </div>
       </div>
+      <Footer/>
     </>
   );
 };

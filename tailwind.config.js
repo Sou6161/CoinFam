@@ -21,6 +21,8 @@ export default {
         "subtle-shift": "subtle-shift 10s ease-in-out infinite",
         marquee: "marquee 25s linear infinite",
         marquee2: "marquee2 25s linear infinite",
+        "spin-slow": "spin-slow 3s linear infinite",
+        matrix: "matrix 1s infinite linear",
       },
       keyframes: {
         marquee: {
@@ -36,6 +38,14 @@ export default {
           "25%": { transform: "translate(5px, 5px) rotate(1deg)" },
           "50%": { transform: "translate(-5px, 5px) rotate(-1deg)" },
           "75%": { transform: "translate(5px, -5px) rotate(1deg)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        matrix: {
+          "0%": { backgroundPosition: "0% 100%, 50% 100%, 100% 100%" },
+          "100%": { backgroundPosition: "0% 0%, 50% 0%, 100% 0%" },
         },
       },
     },

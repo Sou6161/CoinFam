@@ -52,7 +52,7 @@ const NftFloorPriceList = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
+    <><div className="flex flex-col min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
       {/* Header Section */}
       <div className="bg-black w-full">
         <OnlyHeaderComp />
@@ -131,11 +131,9 @@ const NftFloorPriceList = () => {
                 <button
                   onClick={handlePreviousPage}
                   disabled={currentPage === 1}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                    currentPage === 1
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${currentPage === 1
                       ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg"
-                  }`}
+                      : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg"}`}
                 >
                   Previous
                 </button>
@@ -153,10 +151,7 @@ const NftFloorPriceList = () => {
           )}
         </div>
       </main>
-      <div className=" ml-4  xlarge:ml-[6.5vw] 2xlarge:ml-[5.7vw]">
-        <Footer />
-      </div>
-    </div>
+    </div><Footer /></>
   );
 };
 

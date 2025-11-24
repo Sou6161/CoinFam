@@ -205,10 +205,8 @@ const CryptoCategoriesByMC = () => {
             Next
           </button>
         </div>
-        <div className="mt-5 ml-4 xlarge:ml-[6.6vw] 2xlarge:ml-[5.7vw]">
-          <Footer />
-        </div>
       </div>
+      <Footer />
     </>
   );
 };

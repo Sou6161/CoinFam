@@ -34,7 +34,7 @@ const AllCryptoArticles = () => {
   }, [dispatch, articles]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
+    <><div className="min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
       <div className="top-0 z-50 bg-gray-900 shadow-xl">
         <OnlyHeaderComp />
         <MainPageMarquee />
@@ -63,8 +63,7 @@ const AllCryptoArticles = () => {
                   onError={(e) => {
                     e.target.src =
                       "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg";
-                  }}
-                />
+                  } } />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
               </div>
 
@@ -99,10 +98,7 @@ const AllCryptoArticles = () => {
           ))}
         </div>
       </main>
-      <div className=" ml-4 xlarge:ml-[6.6vw] 2xlarge:ml-[5.7vw]">
-        <Footer/>
-      </div>
-    </div>
+    </div><Footer /></>
   );
 };
 

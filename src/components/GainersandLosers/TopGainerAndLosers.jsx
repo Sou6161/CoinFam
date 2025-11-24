@@ -399,10 +399,8 @@ const TopGainerAndLosers = () => {
         <div className="  medium:ml-12 xlarge:ml-20">
           <LatestArticlesData />
         </div>
-        <div className=" mt-5 ml-4 xlarge:ml-20 2xlarge:ml-24">
-          <Footer />
-        </div>
       </div>
+      <Footer />
       <RemoveDialog
         isOpen={showRemoveDialog}
         onClose={handleRemoveCancel}

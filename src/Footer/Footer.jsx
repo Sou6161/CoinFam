@@ -4,10 +4,7 @@ import logo from "../Images Folder/HeaderLogo.png"
 
 const Footer = () => {
   return (
-    <footer className="  relative overflow-hidden  bg-gray-900 text-gray-300 -left-4 min-w-[100vw] xlarge:-left-[6.6vw]  2xlarge:-left-[6.3vw]  ">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute  inset-0  bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 animate-gradient"></div>
-      </div>
+    <footer className="relative bg-gradient-to-r from-cyan-600 via-teal-700 to-emerald-800 text-gray-300 w-full">
       <div className="relative max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 xsmall:grid-cols-2 medium:grid-cols-4 gap-8">
           <div className="md:col-span-2">
@@ -91,23 +88,6 @@ const Footer = () => {
           <p>&copy; 2024 CoinFam. All rights reserved.</p>
         </div>
       </div>
-      <style jsx="true">{`
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
     </footer>
   );
 };

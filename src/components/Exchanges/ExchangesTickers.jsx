@@ -126,7 +126,7 @@ const ExchangesTickers = () => {
   );
 
   return (
-    <div className="min-h-screen bg-black">
+    <><div className="min-h-screen bg-black">
       <OnlyHeaderComp />
       <MainPageMarquee />
 
@@ -136,8 +136,7 @@ const ExchangesTickers = () => {
           <img
             className="w-12 h-12 xsmall:w-16 xsmall:h-16 small:w-20 small:h-20 rounded-lg border-2"
             src={exchangesTickers?.image}
-            alt={exchangesTickers?.name}
-          />
+            alt={exchangesTickers?.name} />
           <h1 className="text-2xl xsmall:text-3xl small:text-4xl medium:text-5xl large:text-6xl font-semibold text-white">
             {exchangesTickers?.name}
           </h1>
@@ -181,9 +180,8 @@ const ExchangesTickers = () => {
                         onError={(e) => {
                           e.target.src =
                             "https://ih1.redbubble.net/image.1861329500.2941/ur,pin_large_front,square,1000x1000.webp";
-                        }}
-                        alt={coin.coin_id}
-                      />
+                        } }
+                        alt={coin.coin_id} />
                       <span className="text-sm font-medium text-gray-900 capitalize">
                         {coin.coin_id}
                       </span>
@@ -308,8 +306,7 @@ const ExchangesTickers = () => {
           <ExchangeVolumeChart ExchangeID={id} />
         </div>
       </div>
-      <Footer/>
-    </div>
+    </div><Footer /></>
   );
 };
 

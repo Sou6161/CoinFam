@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import App from "../App.jsx";
 // import LatestAllArticlesData from "../LatestArticles/LatestAllArticlesData.jsx";
 import CoinFullDetails from "../components/CoinDetails/CoinFullDetails.jsx";
@@ -22,8 +23,24 @@ import AllResearchArticles from "../components/Learn/AllResearchArticles.jsx";
 import AllCryptoNews from "../components/Learn/AllCryptoNews.jsx";
 import MyWatchListCoins from "../components/MyPortfolio/MyWatchListCoins.jsx";
 import MyWatchListNfts from "../components/MyPortfolio/MyWatchListNfts.jsx";
+import CryptoLoader from "../components/Loader/CryptoLoader.jsx";
 
 const RoutesConfig = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loader for 2 seconds on initial load
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <CryptoLoader />;
+  }
+
   return (
     <Routes>
       <Route path="/" element={<App />} />

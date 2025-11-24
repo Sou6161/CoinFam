@@ -47,6 +47,7 @@ const AllResearchArticles = () => {
   }));
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
       <div className="top-0 z-50 bg-gray-900 shadow-xl">
         <OnlyHeaderComp />
@@ -114,10 +115,9 @@ const AllResearchArticles = () => {
           ))}
         </div>
       </main>
-      <div className="ml-4 xlarge:ml-[6.6vw] 2xlarge:ml-[5.7vw]">
-        <Footer />
-      </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

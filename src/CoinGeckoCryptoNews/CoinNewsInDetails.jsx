@@ -17,9 +17,16 @@ const CoinNewsInDetails = () => {
           throw new Error("Failed to fetch news");
         }
         const data = await response.json();
-        setCryptoNews(data.Data.slice(0, 10));
+        
+        // Check if data.Data exists and is an array
+        if (data && data.Data && Array.isArray(data.Data)) {
+          setCryptoNews(data.Data.slice(0, 10));
+        } else {
+          throw new Error("Invalid data format received");
+        }
       } catch (err) {
         setError(err.message);
+        console.error("Error fetching crypto news:", err);
       } finally {
         setLoading(false);
       }

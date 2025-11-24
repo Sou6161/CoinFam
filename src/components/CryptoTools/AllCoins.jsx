@@ -228,10 +228,8 @@ const AllCoins = () => {
               </button>
             </div>
           )}
-          <div className="ml-2 xlarge:ml-20 2xlarge:ml-[5.2vw]">
-            <Footer />
-          </div>
         </div>
+        <Footer />
       </div>
     </>
   );

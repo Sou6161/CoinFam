@@ -18,9 +18,16 @@ const CryptoNews = () => {
           throw new Error("Failed to fetch news");
         }
         const data = await response.json();
-        setCryptoNews(data.Data.slice(0, 12));
+        
+        // Check if data.Data exists and is an array
+        if (data && data.Data && Array.isArray(data.Data)) {
+          setCryptoNews(data.Data.slice(0, 12));
+        } else {
+          throw new Error("Invalid data format received");
+        }
       } catch (err) {
         setError(err.message);
+        console.error("Error fetching crypto news:", err);
       } finally {
         setLoading(false);
       }
@@ -52,10 +59,10 @@ const CryptoNews = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-center mb-8">
-        <button className="group relative inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 px-6 py-3 text-lg font-medium text-white hover:from-purple-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105">
+        <button className="group relative inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-cyan-600 to-blue-500 px-6 py-3 text-lg font-medium text-white hover:from-cyan-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105">
           <FaRegNewspaper className="w-5 h-5 mr-2" />
           Latest Crypto News
-          <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 opacity-0 blur transition duration-200 group-hover:opacity-20"></div>
+          <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-br from-cyan-600 to-blue-500 opacity-0 blur transition duration-200 group-hover:opacity-20"></div>
         </button>
       </div>
 

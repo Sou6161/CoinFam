@@ -418,10 +418,8 @@ const NewCryptocurrencies = () => {
             </button>
           </div>
         </div>
-        <div className="mt-10 ml-4 xlarge:ml-[6.6vw] 2xlarge:ml-[5.7vw]">
-          <Footer />
-        </div>
       </div>
+      <Footer />
       <RemoveDialog
         isOpen={showRemoveDialog}
         onClose={handleRemoveCancel}

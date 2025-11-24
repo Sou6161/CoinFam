@@ -78,6 +78,7 @@ const AllCryptoNews = () => {
   }
 
   return (
+    <>
     <div className="min-h-screen bg-gray-900">
       <div className="bg-black">
         <OnlyHeaderComp />
@@ -147,10 +148,9 @@ const AllCryptoNews = () => {
           ))}
         </div>
       </div>
-      <div className="ml-4 xlarge:ml-[6.6vw] 2xlarge:ml-[5.7vw]">
-        <Footer/>
-      </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

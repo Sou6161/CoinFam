@@ -213,10 +213,8 @@ const ExchangeDerivatives = () => {
             </table>
           </div>
         </div>
-        <div className="mt-[10vh] ml-4 xlarge:ml-[6.7vw] 2xlarge:ml-[5.7vw]">
-          <Footer />
-        </div>
       </div>
+      <Footer />
     </>
   );
 };

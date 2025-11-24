@@ -371,34 +371,34 @@ const CryptoPricesTable = () => {
     <>
       <div className="w-full">
       <div className="overflow-x-auto w-full border-2 border-yellow-400 rounded-lg">
-          <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
-            <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+          <table className="min-w-full bg-gradient-to-br from-cyan-100 to-teal-100 rounded-lg">
+            <thead className="bg-gradient-to-r from-cyan-900 to-teal-900">
               <tr>
-                <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th className="sticky left-0 z-10 bg-gradient-to-br from-cyan-600 to-teal-600 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   #
                 </th>
-                <th className="sticky left-8 xsmall:left-9 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                <th className="sticky left-8 xsmall:left-9 z-10 bg-gradient-to-br from-cyan-600 to-teal-600 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                   Coin
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Price
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   1h
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   24h
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   7d
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Total Volume
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Market Cap
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Last 7 Days
                 </th>
               </tr>
@@ -475,17 +475,17 @@ const CryptoPricesTable = () => {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
             Previous
           </button>
-          <span className="text-purple-600 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
+          <span className="text-cyan-600 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
             Page {currentPage}
           </span>
           <button
             onClick={handleNextPage}
             disabled={!hasNextPage}
-            className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
             Next
           </button>
