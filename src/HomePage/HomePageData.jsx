@@ -222,13 +222,13 @@ const MainContainer = () => {
       {/* Market Cap Cards Row */}
       <div className="grid grid-cols-1 medium:grid-cols-2 large:grid-cols-3 gap-5 mb-6">
         {/* Top Cryptocurrencies Summary */}
-        <div className="bg-gradient-to-r from-[#F29492] to-[#114357] border-2 border-teal-600 shadow-lg rounded-lg p-5">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 hover:border-teal-500/60 shadow-lg rounded-xl p-5 transition-colors">
           <div className="flex items-center mb-3">
             <FaBitcoin className="text-yellow-400 mr-2" size={24} />
-            <h3 className="text-gray-800 font-semibold text-base">Bitcoin Market Cap</h3>
+            <h3 className="text-slate-200 font-semibold text-base">Bitcoin Market Cap</h3>
           </div>
           <div className="flex justify-between items-center mt-3">
-            <span className="text-xl font-bold text-black">
+            <span className="text-xl font-bold text-white">
               ${MarqueeData2?.[0]?.cap?.toLocaleString("en-US")}
             </span>
             <span
@@ -253,13 +253,13 @@ const MainContainer = () => {
         </div>
 
         {/* Ethereum Summary */}
-        <div className="bg-gradient-to-r from-[#F29492] to-[#114357] border-2 border-teal-600 shadow-lg rounded-lg p-5">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 hover:border-teal-500/60 shadow-lg rounded-xl p-5 transition-colors">
           <div className="flex items-center mb-3">
-            <FaEthereum className="text-blue-700 mr-2" size={24} />
-            <h3 className="text-gray-800 font-semibold text-base">Ethereum Market Cap</h3>
+            <FaEthereum className="text-blue-400 mr-2" size={24} />
+            <h3 className="text-slate-200 font-semibold text-base">Ethereum Market Cap</h3>
           </div>
           <div className="flex justify-between items-center mt-3">
-            <span className="text-xl font-bold text-black">
+            <span className="text-xl font-bold text-white">
               ${MarketCapChart?.[0]?.market_cap?.toLocaleString("en-US")}
             </span>
             <span
@@ -283,13 +283,13 @@ const MainContainer = () => {
         </div>
 
         {/* Trading Volumes */}
-        <div className="bg-gradient-to-r from-[#F29492] to-[#114357] border-2 border-teal-600 shadow-lg rounded-lg p-5">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 hover:border-teal-500/60 shadow-lg rounded-xl p-5 transition-colors">
           <div className="flex items-center mb-3">
             <SiBinance className="text-yellow-400 mr-2" size={24} />
-            <h3 className="text-gray-800 font-semibold text-base">Binance 24h Volume</h3>
+            <h3 className="text-slate-200 font-semibold text-base">Binance 24h Volume</h3>
           </div>
           <div className="flex justify-between items-center mt-3">
-            <span className="text-xl font-bold text-black">
+            <span className="text-xl font-bold text-white">
               ${MarketCapBNB?.[0]?.total_volume?.toLocaleString("en-US")}
             </span>
           </div>
@@ -299,10 +299,10 @@ const MainContainer = () => {
       {/* Trending/Gainers/Losers Row */}
       <div className="grid grid-cols-1 small:grid-cols-2 large:grid-cols-3 gap-5 mb-6">
         {/* Trending Coins */}
-        <div className="bg-gradient-to-r from-[#F29492] to-[#114357] border-2 border-teal-600 shadow-lg rounded-lg p-5">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 hover:border-teal-500/60 shadow-lg rounded-xl p-5 transition-colors">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-lg font-semibold text-blue-600">🔥 Trending</h1>
-            <span className="text-red-600 text-xs font-semibold hover:text-green-400 flex items-center cursor-pointer transition-colors">
+            <h1 className="text-lg font-semibold text-sky-300">🔥 Trending</h1>
+            <span className="text-sky-400 text-xs font-semibold hover:text-sky-300 flex items-center cursor-pointer transition-colors">
               View more <FaAngleRight className="ml-1" />
             </span>
           </div>
@@ -315,9 +315,9 @@ const MainContainer = () => {
                   alt={coin?.item?.name}
                 />
                 <div className="flex-grow">
-                  <div className="font-semibold text-gray-800 text-sm">{coin?.item?.name}</div>
+                  <div className="font-semibold text-slate-100 text-sm">{coin?.item?.name}</div>
                   <div className="flex items-center justify-between mt-1">
-                    <span className="text-gray-700 text-xs font-medium">${coin?.item?.data?.price?.toFixed(5)}</span>
+                    <span className="text-slate-300 text-xs font-medium">${coin?.item?.data?.price?.toFixed(5)}</span>
                     <div className="flex items-center">
                       {coin?.item?.data?.price_change_percentage_24h?.usd >= 0 ? (
                         <VscTriangleUp className="text-[#20AC62] text-xs" />
@@ -344,12 +344,12 @@ const MainContainer = () => {
         </div>
 
         {/* Top Gainers */}
-        <div className="bg-gradient-to-r from-[#F29492] to-[#114357] border-2 border-teal-600 shadow-lg rounded-lg p-5">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 hover:border-teal-500/60 shadow-lg rounded-xl p-5 transition-colors">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-lg font-semibold text-blue-600">
+            <h1 className="text-lg font-semibold text-sky-300">
               🚀 Top Gainers
             </h1>
-            <span className="text-red-600 text-xs font-semibold hover:text-green-400 flex items-center cursor-pointer transition-colors">
+            <span className="text-sky-400 text-xs font-semibold hover:text-sky-300 flex items-center cursor-pointer transition-colors">
               View more <FaAngleRight className="ml-1" />
             </span>
           </div>
@@ -362,9 +362,9 @@ const MainContainer = () => {
                   alt={coin?.name}
                 />
                 <div className="flex-grow">
-                  <div className="font-semibold text-gray-800 text-sm">{coin?.name}</div>
+                  <div className="font-semibold text-slate-100 text-sm">{coin?.name}</div>
                   <div className="flex items-center justify-between mt-1">
-                    <span className="text-gray-700 text-xs font-medium">${formatPrice(coin?.price)}</span>
+                    <span className="text-slate-300 text-xs font-medium">${formatPrice(coin?.price)}</span>
                     <div className="flex items-center">
                       {coin?.price_change_24h >= 0 ? (
                         <VscTriangleUp className="text-[#20AC62] text-xs" />
@@ -389,12 +389,12 @@ const MainContainer = () => {
         </div>
 
         {/* Top Losers */}
-        <div className="bg-gradient-to-r from-[#F29492] to-[#114357] border-2 border-teal-600 shadow-lg rounded-lg p-5">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 hover:border-teal-500/60 shadow-lg rounded-xl p-5 transition-colors">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-lg font-semibold text-blue-600">
+            <h1 className="text-lg font-semibold text-sky-300">
               📉 Top Losers
             </h1>
-            <span className="text-red-600 text-xs font-semibold hover:text-green-400 flex items-center cursor-pointer transition-colors">
+            <span className="text-sky-400 text-xs font-semibold hover:text-sky-300 flex items-center cursor-pointer transition-colors">
               View more <FaAngleRight className="ml-1" />
             </span>
           </div>
@@ -407,9 +407,9 @@ const MainContainer = () => {
                   alt={coin?.name}
                 />
                 <div className="flex-grow">
-                  <div className="font-semibold text-gray-800 text-sm">{coin?.name}</div>
+                  <div className="font-semibold text-slate-100 text-sm">{coin?.name}</div>
                   <div className="flex items-center justify-between mt-1">
-                    <span className="text-gray-700 text-xs font-medium">${formatPrice(coin?.price)}</span>
+                    <span className="text-slate-300 text-xs font-medium">${formatPrice(coin?.price)}</span>
                     <div className="flex items-center">
                       {coin?.price_change_24h >= 0 ? (
                         <VscTriangleUp className="text-[#20AC62] text-xs" />
