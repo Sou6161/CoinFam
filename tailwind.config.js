@@ -12,6 +12,8 @@ export default {
     },
     extend: {
       fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Space Grotesk", "Inter", "sans-serif"],
         "roboto-medium": ["Roboto-Medium", "sans-serif"],
         "roboto-black": ["Roboto-Black", "sans-serif"],
         "roboto-bold": ["Roboto-Bold", "sans-serif"],

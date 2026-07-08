@@ -422,17 +422,18 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
       : [];
 
   useEffect(() => {
+    // Reset so the loader shows and stale data doesn't flash when switching coins.
+    setCoinDetails(null);
     const FetchCoinDetails = async () => {
       const response = await fetch(
         `https://api.coingecko.com/api/v3/coins/${id}?localization=true&sparkline=true`,
         CoinGeckoYogeshApi
       );
       const CoinData = await response.json();
-      console.log(CoinData);
       setCoinDetails(CoinData);
     };
     FetchCoinDetails();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     CoinDetails && console.log(CoinDetails);
@@ -553,7 +554,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     fetchMarketsData(currentPage);
