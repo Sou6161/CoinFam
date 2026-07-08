@@ -144,79 +144,74 @@ const MainContainer = () => {
   }
   return (
     <>
-    <div className="w-full mx-auto px-4 bg-black bg-gradient-to-r from-[#3f4c6b] to-[#606c88] overflow-x-hidden">
+    <div className="w-full bg-[#0f172a] overflow-x-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 py-8">
       {/* Global Market Overview */}
-      <div className="bg-gradien-to-r from-[#F29492] to-[#114357] 2xlarge:mt-10 borde-2 border-teal-600 shadow-lg rounded-lg p-2 mb-6"
-      >
-        <h1 className=" relative top-10 left-0  2xlarge:-left-0 mb-10 2xlarge:mb-[10vh] z-5 text-[#fbbf24] text-[5vw] xsmall:text-[3.5vw] small:text-[3vw] medium:text-[2.5vw] large:text-[2vw] xlarge:text-[2vw] 2xlarge:text-[1.5vw] 2xlarge:left-[5vw] font-semibold">
+      <div className="mb-8 max-w-5xl">
+        <h1 className="text-[#fbbf24] text-2xl small:text-3xl large:text-4xl font-bold">
           Cryptocurrency Prices by Market Cap
-          <p className="large:relative large:z-99 text-sky-400 text-[3.5vw] xsmall:text-[2.5vw] small:text-[2.2vw] medium:text-[2vw] xlarge:text-[1.5vw] 2xlarge:text-[1vw] mt-2">
-            The global cryptocurrency market cap today is{" "}
-            {MarqueeData?.length > 0 && MarqueeData2?.length > 0 && (
-              <span>
-                {MarqueeData2[0].cap ? (
-                  <span className="text-white">
-                    {(MarqueeData2[0].cap / 1e12).toFixed(3)} Trillions, a{" "}
-                    <span
-                      className={`text-[3.5vw] xsmall:text-[2.5vw] small:text-[2.2vw] medium:text-[2vw]  xlarge:text-[1.5vw] relative top-1 small:top-1 xsmall:top-2 2xlarge:text-[1vw] inline-flex items-center ${
-                        MarqueeData[0].data
-                          .market_cap_change_percentage_24h_usd < 0
-                          ? "text-red-500"
-                          : "text-[#4BCC00]"
-                      }`}
-                    >
-                      {MarqueeData[0].data
-                        .market_cap_change_percentage_24h_usd >= 0 ? (
-                        <FaCaretUp className="text-[4vw] small:text-[3vw] medium:text-[2.5vw] xlarge:text-[1.5vw] 2xlarge:text-[1vw]" />
-                      ) : (
-                        <FaCaretDown className="text-[4vw] small:text-[3vw] medium:text-[2.5vw] xlarge:text-[1.5vw] 2xlarge:text-[1vw]" />
-                      )}
-                      {MarqueeData[0].data.market_cap_change_percentage_24h_usd?.toFixed(
-                        1
-                      )}
-                      %
-                    </span>
-                  </span>
-                ) : (
-                  ""
-                )}
-              </span>
-            )}{" "}
-            change in the last 24 hours.{" "}
-            {/* <span className="text-purple-500 hover:text-orange-400 text-[3.5vw] xsmall:text-[2.5vw] medium:text-[2vw] 2xlarge:text-[1vw] hover:cursor-pointer hover:underline">
-              Read more
-            </span> */}
-            <p className="mt-5">
-              Total cryptocurrency trading volume in the last day is at{" "}
-              <span className="text-lime-400">
-                $
-                {MarqueeData[0]?.data?.total_volume?.usd >= 1e12
-                  ? (MarqueeData[0]?.data?.total_volume?.usd / 1e12).toFixed(
-                      0
-                    ) + " Trillion"
-                  : MarqueeData[0]?.data?.total_volume?.usd >= 1e9
-                  ? (MarqueeData[0]?.data?.total_volume?.usd / 1e9).toFixed(0) +
-                    " Billion"
-                  : MarqueeData[0]?.data?.total_volume?.usd >= 1e6
-                  ? (MarqueeData[0]?.data?.total_volume?.usd / 1e6).toFixed(0) +
-                    " Million"
-                  : MarqueeData[0]?.data?.total_volume?.usd >= 1e3
-                  ? (MarqueeData[0]?.data?.total_volume?.usd / 1e3).toFixed(0) +
-                    "K"
-                  : MarqueeData[0]?.data?.total_volume?.usd.toFixed(2)}{" "}
-              </span>
-              .Bitcoin dominance is at{" "}
-              <span className="text-lime-400">
-                {(MarqueeData2[0]?.btcDominance * 100).toFixed(2)}%
-              </span>
-              . CoinFam is now tracking{" "}
-              <span className="text-lime-400">
-                {MarqueeData[0]?.data?.active_cryptocurrencies.toLocaleString()}
-              </span>{" "}
-              cryptocurrencies.
-            </p>
-          </p>
         </h1>
+        <p className="text-sky-300 text-sm small:text-base leading-relaxed mt-4">
+          The global cryptocurrency market cap today is{" "}
+          {MarqueeData?.length > 0 && MarqueeData2?.length > 0 && (
+            <span>
+              {MarqueeData2[0].cap ? (
+                <span className="text-white font-medium">
+                  {(MarqueeData2[0].cap / 1e12).toFixed(3)} Trillions, a{" "}
+                  <span
+                    className={`inline-flex items-center font-semibold ${
+                      MarqueeData[0].data
+                        .market_cap_change_percentage_24h_usd < 0
+                        ? "text-red-500"
+                        : "text-[#4BCC00]"
+                    }`}
+                  >
+                    {MarqueeData[0].data
+                      .market_cap_change_percentage_24h_usd >= 0 ? (
+                      <FaCaretUp />
+                    ) : (
+                      <FaCaretDown />
+                    )}
+                    {MarqueeData[0].data.market_cap_change_percentage_24h_usd?.toFixed(
+                      1
+                    )}
+                    %
+                  </span>
+                </span>
+              ) : (
+                ""
+              )}
+            </span>
+          )}{" "}
+          change in the last 24 hours.
+        </p>
+        <p className="text-sky-300 text-sm small:text-base leading-relaxed mt-3">
+          Total cryptocurrency trading volume in the last day is at{" "}
+          <span className="text-lime-400 font-medium">
+            $
+            {MarqueeData[0]?.data?.total_volume?.usd >= 1e12
+              ? (MarqueeData[0]?.data?.total_volume?.usd / 1e12).toFixed(0) +
+                " Trillion"
+              : MarqueeData[0]?.data?.total_volume?.usd >= 1e9
+              ? (MarqueeData[0]?.data?.total_volume?.usd / 1e9).toFixed(0) +
+                " Billion"
+              : MarqueeData[0]?.data?.total_volume?.usd >= 1e6
+              ? (MarqueeData[0]?.data?.total_volume?.usd / 1e6).toFixed(0) +
+                " Million"
+              : MarqueeData[0]?.data?.total_volume?.usd >= 1e3
+              ? (MarqueeData[0]?.data?.total_volume?.usd / 1e3).toFixed(0) + "K"
+              : MarqueeData[0]?.data?.total_volume?.usd.toFixed(2)}{" "}
+          </span>
+          .Bitcoin dominance is at{" "}
+          <span className="text-lime-400 font-medium">
+            {(MarqueeData2[0]?.btcDominance * 100).toFixed(2)}%
+          </span>
+          . CoinFam is now tracking{" "}
+          <span className="text-lime-400 font-medium">
+            {MarqueeData[0]?.data?.active_cryptocurrencies.toLocaleString()}
+          </span>{" "}
+          cryptocurrencies.
+        </p>
       </div>
 
       {/* Market Cap Cards Row */}
@@ -435,10 +430,11 @@ const MainContainer = () => {
       </div>
 
       {/* Additional Components */}
-      <div>
+      <div className="mt-2">
         <CryptoPricesTable />
         <CryptoNews />
         <LatestArticlesData />
+      </div>
       </div>
     </div>
     <Footer />

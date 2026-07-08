@@ -49,8 +49,8 @@ const ExchangesTickers = () => {
   const TableHeader = ({ children, sticky, additional }) => (
     <th
       className={`
-      px-2 py-2 xsmall:px-4 small:px-6 xsmall:py-3 
-      text-left text-xs font-medium text-black uppercase tracking-wider
+      px-2 py-2 xsmall:px-4 small:px-6 xsmall:py-4 
+      text-left text-xs font-medium text-slate-100 uppercase tracking-wider
       ${
         sticky
           ? "sticky left-0 z-10 bg-gray-400"
@@ -149,7 +149,7 @@ const ExchangesTickers = () => {
 
         {/* Table Section */}
         <div className="overflow-x-auto border-2 border-purple-500 rounded-lg bg-white">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-slate-700/50">
             <thead>
               <tr>
                 <TableHeader sticky>#</TableHeader>
@@ -166,13 +166,13 @@ const ExchangesTickers = () => {
                 <TableHeader>Trust Score</TableHeader>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-slate-700/50">
               {ExchangeTickersFullList?.tickers.map((coin, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 text-xs xsmall:text-sm text-gray-500">
+                <tr key={index} className="hover:bg-slate-800/40">
+                  <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 text-xs xsmall:text-sm text-gray-500">
                     {(currentPage - 1) * coinsPerPage + index + 1}
                   </td>
-                  <td className="sticky left-8   z-10 bg-zinc-300/50 backdrop-blur-sm p-2 xsmall:p-4">
+                  <td className="sticky left-8   z-10 bg-slate-900/90 backdrop-blur-sm p-2 xsmall:p-4">
                     <div className="flex items-center space-x-2">
                       <img
                         className="w-6 h-6 rounded-full"
@@ -182,7 +182,7 @@ const ExchangesTickers = () => {
                             "https://ih1.redbubble.net/image.1861329500.2941/ur,pin_large_front,square,1000x1000.webp";
                         } }
                         alt={coin.coin_id} />
-                      <span className="text-sm font-medium text-gray-900 capitalize">
+                      <span className="text-sm font-medium text-slate-100 capitalize">
                         {coin.coin_id}
                       </span>
                     </div>

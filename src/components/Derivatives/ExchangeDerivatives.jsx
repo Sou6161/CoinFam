@@ -64,7 +64,7 @@ const ExchangeDerivatives = () => {
         <OnlyHeaderComp />
         <MainPageMarquee />
       </div>
-      <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] min-h-screen">
+      <div className="bg-[#0f172a] min-h-screen pb-16">
         <h1 className="ml-3 relative top-10 text-[6vw] xsmall:text-[4.5vw] small:text-[4vw] medium:text-[3vw] large:text-[2.5vw] xlarge:text-[2vw] text-yellow-400 font-semibold">
           Top Derivative Exchanges Ranked by Open Interest & Trade Volume
         </h1>
@@ -74,38 +74,38 @@ const ExchangeDerivatives = () => {
           (Futures), OrangeX Futures, and Bybit (Futures) in the top 3 rankings.
         </p>
 
-        <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] mt-[14vh] px-2">
-          <div className="overflow-x-auto w-full 2xlarge:w-[90vw]  2xlarge:mx-auto border-2 border-yellow-400 rounded-lg">
-            <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
-              <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+        <div className="bg-[#0f172a] mt-[14vh] px-2">
+          <div className="overflow-x-auto w-full 2xlarge:w-[90vw]  2xlarge:mx-auto border border-slate-700/60 rounded-lg">
+            <table className="min-w-full bg-slate-900/40 rounded-lg">
+              <thead className="bg-teal-900">
                 <tr>
-                  <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">
                     #
                   </th>
-                  <th className="sticky left-7 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px]">
+                  <th className="sticky left-7 z-10 bg-teal-800 px-3 py-2 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px]">
                     Exchange
                   </th>
-                  <th className="px-3 py-2 max-w-[50vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 max-w-[50vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h Open Interest
                   </th>
-                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h Volume
                   </th>
-                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Futures
                   </th>
-                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Open Interest (7d)
                   </th>
-                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Volume (7d)
                   </th>
-                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 max-w-[25vw] whitespace-nowrap bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Launched
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+              <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
                 {DerivativesList &&
                   DerivativesList.map((coin, index) => {
                     const openInterestData = generateTimeSeriesData(
@@ -118,11 +118,11 @@ const ExchangeDerivatives = () => {
                     );
 
                     return (
-                      <tr key={coin.id} className="hover:bg-gray-50">
-                        <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 whitespace-nowrap text-xs text-gray-500">
+                      <tr key={coin.id} className="hover:bg-slate-800/40">
+                        <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 whitespace-nowrap text-xs text-gray-500">
                           {(currentPage - 1) * coinsPerPage + index + 1}
                         </td>
-                        <td className="sticky left-7 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 min-w-[150px]">
+                        <td className="sticky left-7 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 min-w-[150px]">
                           <div className="flex items-center">
                             <Link to={`/en/exchanges/${coin.id}`}>
                               <div className="flex items-center space-x-2">
@@ -131,14 +131,14 @@ const ExchangeDerivatives = () => {
                                   src={coin?.image}
                                   alt={coin.name}
                                 />
-                                <span className="text-sm font-medium text-wrap text-gray-900">
+                                <span className="text-sm font-medium text-wrap text-slate-100">
                                   {coin.name}
                                 </span>
                               </div>
                             </Link>
                           </div>
                         </td>
-                        <td className="px-2 py-2 text-black font-bold whitespace-nowrap text-xs">
+                        <td className="px-2 py-2 text-slate-100 font-bold whitespace-nowrap text-xs">
                           <span className="rounded-lg p-1">
                             ₹
                             {parseFloat(
@@ -149,7 +149,7 @@ const ExchangeDerivatives = () => {
                             })}
                           </span>
                         </td>
-                        <td className="px-2 py-2 whitespace-nowrap text-xs font-bold text-black">
+                        <td className="px-2 py-2 whitespace-nowrap text-xs font-bold text-slate-100">
                           ₹{" "}
                           {parseFloat(
                             coin?.trade_volume_24h_btc * btcPrice
@@ -158,7 +158,7 @@ const ExchangeDerivatives = () => {
                             maximumFractionDigits: 0,
                           })}
                         </td>
-                        <td className="px-5 py-2 whitespace-nowrap text-xs font-bold text-black">
+                        <td className="px-5 py-2 whitespace-nowrap text-xs font-bold text-slate-100">
                           <h1 className="inline-block px-1 rounded-xl font-bold">
                             {coin?.number_of_futures_pairs}
                           </h1>

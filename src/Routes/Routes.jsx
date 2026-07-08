@@ -75,6 +75,8 @@ const RoutesConfig = () => {
       <Route path="/en/news" element={<AllCryptoNews />} />
       <Route path="/en/coins-portfolio" element={<MyWatchListCoins/>}/>
       <Route path="/en/nft-portfolio" element={<MyWatchListNfts/>}/>
+      {/* Fallback: never render a blank page for an unmatched route */}
+      <Route path="*" element={<App />} />
     </Routes>
   );
 };

@@ -8,8 +8,8 @@ import { PiSparkleFill } from "react-icons/pi";
 import { GiTrophy } from "react-icons/gi";
 import { BsBank } from "react-icons/bs";
 import { IoCubeSharp } from "react-icons/io5";
-import { RiNftLine } from "react-icons/ri";
-import { FaCoins } from "react-icons/fa";
+import { RiNftLine, RiArticleLine } from "react-icons/ri";
+import { FaCoins, FaLightbulb } from "react-icons/fa";
 import { TiStarburst } from "react-icons/ti";
 import { FaBookOpen } from "react-icons/fa";
 import { ImNewspaper } from "react-icons/im";
@@ -123,18 +123,19 @@ const OnlyHeaderComp = () => {
   };
 
   const MenuItems = () => (
-    <div className="flex flex-col medium:flex-col 2xlarge:flex-row items-center relative">
+    <div className="flex flex-col 2xlarge:flex-row items-stretch 2xlarge:items-center relative w-full 2xlarge:w-auto">
       <Link
         to="/en/nft"
-        className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium w-full 2xlarge:w-auto"
+        className="flex items-center text-slate-300 hover:text-white hover:bg-slate-800 2xlarge:hover:bg-transparent px-3 py-2 rounded-md text-sm font-medium w-full 2xlarge:w-auto transition-colors"
       >
         <span>NFT</span>
       </Link>
 
       <div className="relative w-full  2xlarge:w-auto">
         <button
+          type="button"
           onClick={toggleLearnDropdown}
-          className="flex items-center justify-cente text-blue-600 hover:text-white px-3 py-2 text-sm font-medium w-full 2xlarge:w-auto"
+          className="flex items-center justify-between 2xlarge:justify-center text-slate-300 hover:text-white hover:bg-slate-800 2xlarge:hover:bg-transparent px-3 py-2 rounded-md text-sm font-medium w-full 2xlarge:w-auto transition-colors"
         >
           Learn
           <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
@@ -147,25 +148,25 @@ const OnlyHeaderComp = () => {
         </button>
 
         {isLearnDropdownOpen && (
-          <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-            <div className="py-1">
+          <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-[#111827] border border-slate-700 z-50">
+            <div className="p-2 space-y-0.5">
               <Link
                 to="/learn/crypto-articles"
-                className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
               >
                 <RiArticleLine className="mr-2" />
                 Crypto Articles
               </Link>
               <Link
                 to="/learn/research"
-                className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
               >
                 <FaLightbulb className="mr-2" />
                 Research Insights
               </Link>
               <Link
                 to="/en/news"
-                className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
               >
                 <ImNewspaper className="mr-2" />
                 Crypto News
@@ -268,7 +269,7 @@ const OnlyHeaderComp = () => {
 
   return (
     <>
-      <nav className="bg-gray-900 relative z-50">
+      <nav className="bg-[#0b1120] border-b border-slate-800 relative z-50">
           <div className="max-w-7xl mx-auto px-4 small:px-6 large:px-8">
             <div className="flex items-center justify-between h-16">
               {/* Logo Section */}
@@ -329,6 +330,7 @@ const OnlyHeaderComp = () => {
                 {/* Cryptocurrencies Dropdown */}
                 <div className="relative">
                   <button
+                    type="button"
                     onClick={toggleCryptocurrenciesDropdown}
                     className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm font-medium"
                   >
@@ -348,11 +350,11 @@ const OnlyHeaderComp = () => {
                   </button>
 
                   {isCryptocurrenciesOpen && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                      <div className="py-1">
+                    <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-[#111827] border border-slate-700">
+                      <div className="p-2 space-y-0.5">
                         <Link
                           to="/"
-                          className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           <PiRankingFill className="mr-2" />
                           By Market Cap
@@ -360,41 +362,41 @@ const OnlyHeaderComp = () => {
                         {/* Add more mobile menu items */}
                         <Link
                           to="/en/categories"
-                          className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           <BiSolidCategory className=" mr-2" />
                           Categories
                         </Link>
                         <Link
                           to="/en/highlights"
-                          className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           <FaRectangleList className=" mr-2" />
                           Highlights
                         </Link>
                         <Link
                           to="/en/newcryptocurrencies"
-                          className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           <PiSparkleFill className=" mr-2" />
                           New Cryptocurrencies
                         </Link>
                         <Link
                           to="/en/crypto-Top-gainers-losers"
-                          className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           <GiTrophy className=" mr-2" />
                           Gainers & Losers
                         </Link>
                         <Link
                           to="/en/all-cryptocurrencies"
-                          className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           All Coins
                         </Link>
                         <Link
                           to="/en/coin-converter"
-                          className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sme"
+                          className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                         >
                           Converter
                         </Link>
@@ -407,6 +409,7 @@ const OnlyHeaderComp = () => {
                 {/* Exchanges Dropdown */}
                 <div className="relative">
                   <button
+                    type="button"
                     onClick={toggleExchangesDropdown}
                     className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm font-medium"
                   >
@@ -426,18 +429,18 @@ const OnlyHeaderComp = () => {
                   </button>
 
                   {isExchangesOpen && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                      <div className="py-1">
+                    <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-[#111827] border border-slate-700">
+                      <div className="p-2 space-y-0.5">
                         <Link
                           to="/en/exchanges"
-                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="flex items-center gap-1 px-3 py-2 rounded-md text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
                         >
                           <BsBank className="mr-2" />
                           Crypto Exchanges
                         </Link>
                         <Link
                           to="/en/exchanges/derivatives"
-                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="flex items-center gap-1 px-3 py-2 rounded-md text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
                         >
                           <IoCubeSharp className="mr-2" />
                           Derivatives
@@ -450,6 +453,7 @@ const OnlyHeaderComp = () => {
                 {shouldShowMoreDropdown ? (
                   <div className="relative">
                     <button
+                      type="button"
                       onClick={() => setIsMoreDropdownOpen(!isMoreDropdownOpen)}
                       className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm font-medium"
                     >
@@ -468,8 +472,8 @@ const OnlyHeaderComp = () => {
                     </button>
 
                     {isMoreDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <div className="py-1">
+                      <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-[#111827] border border-slate-700">
+                        <div className="p-2 space-y-0.5">
                           <MenuItems />
                         </div>
                       </div>
@@ -489,6 +493,7 @@ const OnlyHeaderComp = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 ">
               {/* Cryptocurrencies Section */}
               <button
+                type="button"
                 onClick={toggleCryptocurrenciesDropdown}
                 className="w-full text-left flex items-center text-gray-300 hover:text-white px-3 py-2 text-base font-medium"
               >
@@ -511,7 +516,7 @@ const OnlyHeaderComp = () => {
                 <div className="pl-6 space-y-1">
                   <Link
                     to="/"
-                    className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <PiRankingFill className="mr-2" />
                     By Market Cap
@@ -519,41 +524,41 @@ const OnlyHeaderComp = () => {
                   {/* Add more mobile menu items */}
                   <Link
                     to="/en/categories"
-                    className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <BiSolidCategory className=" mr-2" />
                     Categories
                   </Link>
                   <Link
                     to="/en/highlights"
-                    className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <FaRectangleList className=" mr-2" />
                     Highlights
                   </Link>
                   <Link
                     to="/en/newcryptocurrencies"
-                    className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <PiSparkleFill className=" mr-2" />
                     New Cryptocurrencies
                   </Link>
                   <Link
                     to="/en/crypto-Top-gainers-losers"
-                    className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <GiTrophy className=" mr-2" />
                     Gainers & Losers
                   </Link>
                   <Link
                     to="/en/all-cryptocurrencies"
-                    className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     All Coins
                   </Link>
                   <Link
                     to="/en/coin-converter"
-                    className=" flex items-center text-gray-300 hover:text-white px-3 py-2 text-sme"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     Converter
                   </Link>
@@ -562,6 +567,7 @@ const OnlyHeaderComp = () => {
 
               {/* Exchanges Section */}
               <button
+                type="button"
                 onClick={toggleExchangesDropdown}
                 className="w-full text-left flex items-center text-gray-300 hover:text-white px-3 py-2 text-base font-medium"
               >
@@ -584,7 +590,7 @@ const OnlyHeaderComp = () => {
                 <div className="pl-6 space-y-1">
                   <Link
                     to="/en/exchanges"
-                    className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <BsBank className="mr-2" />
                     Crypto Exchanges
@@ -592,7 +598,7 @@ const OnlyHeaderComp = () => {
                   {/* Add more mobile menu items */}
                   <Link
                     to="/en/exchanges/derivatives"
-                    className="flex items-center text-gray-300 hover:text-white px-3 py-2 text-sm"
+                    className="flex items-center gap-1 text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md text-sm transition-colors"
                   >
                     <IoCubeSharp className=" mr-2" />
                     Derivatives
@@ -627,7 +633,7 @@ const OnlyHeaderComp = () => {
                 {/* Main Heading */}
                 <h1 className="text-4xl font-bold mb-4 text-center">
                   Where Crypto Meets
-                  <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  <span className="text-cyan-400">
                     {" "}
                     Digital Art & Innovation
                   </span>

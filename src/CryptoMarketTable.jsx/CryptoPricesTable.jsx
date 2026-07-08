@@ -41,7 +41,7 @@ const RemoveDialog = ({ isOpen, onClose, onConfirm }) => {
         <div className="flex justify-end gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium"
+            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-slate-800/40 font-medium"
           >
             No
           </button>
@@ -193,7 +193,7 @@ const CryptoPricesTable = () => {
     const isWatchlisted = watchlistCoinsredux.includes(coin.id);
 
     return (
-      <td className="sticky left-0 z-20 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+      <td className="sticky left-0 z-20 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
         <div className="relative">
           <button
             onClick={(e) => {
@@ -358,11 +358,13 @@ const CryptoPricesTable = () => {
 
   if (isLoading) {
     return (
-      <div className="loading-wave">
-        <div className="loading-bar"></div>
-        <div className="loading-bar"></div>
-        <div className="loading-bar"></div>
-        <div className="loading-bar"></div>
+      <div className="flex justify-center items-center w-full min-h-[300px]">
+        <div className="loading-wave">
+          <div className="loading-bar"></div>
+          <div className="loading-bar"></div>
+          <div className="loading-bar"></div>
+          <div className="loading-bar"></div>
+        </div>
       </div>
     );
   }
@@ -370,47 +372,47 @@ const CryptoPricesTable = () => {
   return (
     <>
       <div className="w-full">
-      <div className="overflow-x-auto w-full border-2 border-yellow-400 rounded-lg">
-          <table className="min-w-full bg-gradient-to-br from-cyan-100 to-teal-100 rounded-lg">
-            <thead className="bg-gradient-to-r from-cyan-900 to-teal-900">
+      <div className="overflow-x-auto w-full border border-slate-700/60 rounded-xl shadow-lg">
+          <table className="min-w-full bg-slate-900/40 rounded-xl">
+            <thead className="bg-teal-900">
               <tr>
-                <th className="sticky left-0 z-10 bg-gradient-to-br from-cyan-600 to-teal-600 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider">
                   #
                 </th>
-                <th className="sticky left-8 xsmall:left-9 z-10 bg-gradient-to-br from-cyan-600 to-teal-600 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                <th className="sticky left-8 xsmall:left-9 z-10 bg-teal-800 px-3 py-2 xsmall:px-6 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                   Coin
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Price
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   1h
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   24h
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   7d
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Total Volume
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Market Cap
                 </th>
-                <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-cyan-600/50 to-teal-600/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   Last 7 Days
                 </th>
               </tr>
             </thead>    
-            <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+            <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
               {allCoinsList.map((coin, index) => (
-                <tr key={coin.id} className="hover:bg-gray-50">
+                <tr key={coin.id} className="hover:bg-slate-800/40 transition-colors">
                   {/* {renderWatchlistCell(coin, index)} */}
-                  <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-black">
+                  <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-slate-400">
                     {(currentPage - 1) * coinsPerPage + index + 1}
                   </td>
-                  <td className="sticky left-8 xsmall:left-9 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 max-w-[150px] xsmall:max-w-[200px]">
+                  <td className="sticky left-8 xsmall:left-9 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 max-w-[150px] xsmall:max-w-[200px]">
                     <div className="flex items-center">
                       <img
                         src={coin.image}
@@ -418,33 +420,33 @@ const CryptoPricesTable = () => {
                         className="w-4 h-4 xsmall:w-6 xsmall:h-6 mr-1 xsmall:mr-2"
                       />
                       <Link to={`/en/coins/${coin.id}`}>
-                        <span className="text-[4vw] xsmall:text-sm 2xlarge:text-[1vw] font-medium w-[20vw] h-[6vh]  whitespace-normal xsmall:w-[33vw] text-gray-900 truncate ">
+                        <span className="text-[4vw] xsmall:text-sm 2xlarge:text-[1vw] font-medium w-[20vw] h-[6vh]  whitespace-normal xsmall:w-[33vw] text-slate-100 truncate ">
                           {coin.name}
-                          <h1 className="flex flex-col text-gray-600 text-[3vw] xsmall:text-[2vw] large:text-[1.2vw] xlarge:text-[1vw] 2xlarge:text-[0.8vw]">
+                          <h1 className="flex flex-col text-slate-400 text-[3vw] xsmall:text-[2vw] large:text-[1.2vw] xlarge:text-[1vw] 2xlarge:text-[0.8vw]">
                             {coin?.symbol?.toUpperCase()}
                           </h1>
                         </span>
                       </Link>
                     </div>
                   </td>
-                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-black font-semibold">
+                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-slate-100 font-semibold">
                     $
                     {coin.current_price ? coin.current_price.toFixed(2) : "N/A"}
                   </td>
-                  <td className="px-2 py-2 xsmall:px-4 xsmall:py-4 whitespace-nowrap font-semibold text-xs xsmall:text-sm">
+                  <td className="px-2 py-2 xsmall:px-4 xsmall:py-5 whitespace-nowrap font-semibold text-xs xsmall:text-sm">
                     {renderPercentageChange(
                       coin.price_change_percentage_1h_in_currency
                     )}
                   </td>
-                  <td className="px-2 py-2 xsmall:px-4 xsmall:py-4 whitespace-nowrap font-semibold text-xs xsmall:text-sm ">
+                  <td className="px-2 py-2 xsmall:px-4 xsmall:py-5 whitespace-nowrap font-semibold text-xs xsmall:text-sm ">
                     {renderPercentageChange(coin.price_change_percentage_24h)}
                   </td>
-                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm">
+                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm">
                     {renderPercentageChange(
                       coin.price_change_percentage_7d_in_currency
                     )}
                   </td>
-                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-black font-semibold">
+                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-slate-100 font-semibold">
                     <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                       $
                       {coin.total_volume
@@ -452,12 +454,12 @@ const CryptoPricesTable = () => {
                         : "N/A"}
                     </h1>
                   </td>
-                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-black font-semibold  ">
+                  <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-slate-100 font-semibold  ">
                     $
                     {coin.market_cap ? coin.market_cap.toLocaleString() : "N/A"}
                   </td>
                   <td
-                    className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500"
+                    className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500"
                     style={{ minWidth: "150px" }}
                   >
                     {coin.sparkline_in_7d && coin.sparkline_in_7d.price ? (
@@ -475,17 +477,17 @@ const CryptoPricesTable = () => {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             Previous
           </button>
-          <span className="text-cyan-600 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
+          <span className="text-cyan-300 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
             Page {currentPage}
           </span>
           <button
             onClick={handleNextPage}
             disabled={!hasNextPage}
-            className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             Next
           </button>

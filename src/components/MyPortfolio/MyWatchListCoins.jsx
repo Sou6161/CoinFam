@@ -139,9 +139,9 @@ const MyWatchListCoins = () => {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Market Cap</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-slate-700/50">
                 {watchlistData.map((coin) => (
-                  <tr key={coin.id} className="hover:bg-gray-50">
+                  <tr key={coin.id} className="hover:bg-slate-800/40">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <img src={coin.image} alt={coin.name} className="w-6 h-6 mr-2" />

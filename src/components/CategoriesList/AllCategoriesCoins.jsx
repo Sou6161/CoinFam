@@ -60,7 +60,7 @@ const AllCategoriesCoins = () => {
           <div className="flex justify-end gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium"
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-slate-800/40 font-medium"
             >
               No
             </button>
@@ -102,7 +102,7 @@ const AllCategoriesCoins = () => {
           <div className="flex justify-end gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium"
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-slate-800/40 font-medium"
             >
               Cancel
             </button>
@@ -154,7 +154,7 @@ const AllCategoriesCoins = () => {
 
   const renderWatchlistCell = (coin, index) => {
     return (
-      <td className="sticky left-0 z-20 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+      <td className="sticky left-0 z-20 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
         <div className="relative">
           <button
             onClick={(e) => {
@@ -343,47 +343,47 @@ const AllCategoriesCoins = () => {
             <table className="min-w-full bg-white rounded-lg">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-black uppercase tracking-wider w-8">
+                  <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-slate-100 uppercase tracking-wider w-8">
                     ★
                   </th>
-                  <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                  <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-slate-100 uppercase tracking-wider">
                     #
                   </th>
-                  <th className="sticky left-7 xsmall:left-10 z-10 bg-gray-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-black  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                  <th className="sticky left-7 xsmall:left-10 z-10 bg-gray-400 px-3 py-2 xsmall:px-6 xsmall:py-4 text-left text-xs font-medium text-slate-100  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                     Coin
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     Price
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     1h
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     24h
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     7d
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     Total volume
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     Market Cap
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-purple-400/50 backdrop-blur-md text-left text-xs font-semibold text-slate-100 uppercase tracking-wider">
                     Last 7 Days
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-slate-700/50">
                 {CategoryCoinsList &&
                   CategoryCoinsList.map((coin, index) => (
-                    <tr key={coin.id} className="hover:bg-gray-50">
+                    <tr key={coin.id} className="hover:bg-slate-800/40">
                       {renderWatchlistCell(coin, index)}
-                      <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+                      <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
                         {(currentPage - 1) * coinsPerPage + index + 1}
                       </td>
-                      <td className="sticky left-7 xsmall:left-9 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 max-w-[150px] xsmall:max-w-[200px]">
+                      <td className="sticky left-7 xsmall:left-9 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 max-w-[150px] xsmall:max-w-[200px]">
                         <div className="flex items-center">
                           <Link to={`/en/coins/${coin.id}`}>
                             <div className="flex items-center space-x-2">
@@ -392,35 +392,35 @@ const AllCategoriesCoins = () => {
                                 src={coin?.image}
                                 alt={coin.name}
                               />
-                              <span className="text-sm font-medium text-gray-900 truncate">
+                              <span className="text-sm font-medium text-slate-100 truncate">
                                 {coin.name}
                               </span>
                             </div>
                           </Link>
                         </div>
                       </td>
-                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 text-black font-bold  whitespace-nowrap text-xs xsmall:text-sm">
+                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 text-slate-100 font-bold  whitespace-nowrap text-xs xsmall:text-sm">
                         ${coin?.current_price.toLocaleString()}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(
                           coin.price_change_percentage_1h_in_currency
                         )}
                       </td>
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(
                           coin.price_change_percentage_24h_in_currency
                         )}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(
                           coin.price_change_percentage_7d_in_currency
                         )}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-gray-500">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-gray-500">
                         <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                           $
                           {coin.total_volume
@@ -429,7 +429,7 @@ const AllCategoriesCoins = () => {
                         </h1>
                       </td>
 
-                      <td className="px-3 py-2 font-bold xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+                      <td className="px-3 py-2 font-bold xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
                         $
                         {coin.market_cap
                           ? Number(coin.market_cap)
@@ -439,7 +439,7 @@ const AllCategoriesCoins = () => {
                       </td>
 
                       <td
-                        className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500"
+                        className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500"
                         style={{ minWidth: "150px" }}
                       >
                         {coin?.sparkline_in_7d &&
@@ -462,11 +462,11 @@ const AllCategoriesCoins = () => {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             Previous
           </button>
-          <span className="text-cyan-600 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
+          <span className="text-cyan-300 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
             Page {currentPage}
           </span>
           <button
@@ -474,7 +474,7 @@ const AllCategoriesCoins = () => {
             disabled={
               CategoryCoinsList && CategoryCoinsList.length < coinsPerPage
             }
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             Next
           </button>

@@ -58,13 +58,13 @@ const CoinNewsInDetails = () => {
       <div className="space-y-8">
         {/* Header Section */}
         <div className="flex flex-col items-center space-y-4">
-          <button className="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+          <button className="group bg-teal-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
             <span className="flex items-center space-x-2">
               <FaRegNewspaper className="w-5 h-5" />
               <span className="text-lg">Latest Crypto News</span>
             </span>
           </button>
-          <div className="w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+          <div className="w-full max-w-3xl h-px bg-slate-700"></div>
         </div>
 
         {/* News Grid */}

@@ -190,7 +190,7 @@ const CryptoHighlightsData = () => {
         <OnlyHeaderComp />
         <MainPageMarquee />
       </div>
-      <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] min-h-screen text-yellow-400 px-4">
+      <div className="bg-[#0f172a] min-h-screen text-yellow-400 px-4">
         <h1 className="text-[6vw] xsmall:text-[5vw] small:text-[4.5vw] medium:text-[3.7vw] large:text-[3vw] xlarge:text-[2.5vw] 2xlarge:text-[2vw] text-center pt-10 pb-2 font-semibold">
           Crypto Highlights
         </h1>
@@ -201,55 +201,14 @@ const CryptoHighlightsData = () => {
         </p>
 
         {/* Grid Container */}
-        <div
-          className="grid grid-cols-1 gap-6 pb-8
-          medium:grid-cols-2 
-          xlarge:grid-cols-3 
-          2xlarge:grid-cols-4
-          -mt-10"
-        >
-          {/* Each component wrapped in a div that maintains consistent height */}
-          <div className="h-full">
-            <TrendingCoins
-              TrendingCoinsHL={TrendingCoinsHL}
-              className="h-full"
-            />
-          </div>
-
-          <div className="h-full -mt-5 2xlarge:-mt-6">
-            <TopGainers
-              TopCryptoGainers={TopCryptoGainers}
-              className="h-full"
-            />
-          </div>
-
-          <div className="h-full xlarge:-mt-12 2xlarge:-mt-14">
-            <TopLosers TopCryptoLosers={TopCryptoLosers} className="h-full" />
-          </div>
-          <div className="h-full -mt-[14vh]  medium:-mt-[17vh] xlarge:-mt-[17vh] 2xlarge:-mt-[24vh]">
-            <MostVotedCoins
-              MostVotedCrytoCoins={MostVoted}
-              className="h-full"
-            />
-          </div>
-
-          <div className="h-full mt-[14vh] medium:mt-7 xlarge:-mt-9 2xlarge:-mt-8">
-            <NewCoins NewCryptoCoin={NewCryptoCoin} className="h-full" />
-          </div>
-
-          <div className="h-full xlarge:-mt-16">
-            <HighestCoinVolume
-              CoinsByTradingVol={CoinsByTradingVol}
-              className="h-full"
-            />
-          </div>
-
-          <div className="h-full -mt-7 xlarge:mt-10 2xlarge:-mt-[12vh]">
-            <AllTimeHighPrice
-              AllTimeHighCoinPrice={AllTimeHighCoinPrice}
-              className="h-full"
-            />
-          </div>
+        <div className="grid grid-cols-1 gap-8 pb-16 medium:grid-cols-2 xlarge:grid-cols-3 2xlarge:grid-cols-4 items-start">
+          <TrendingCoins TrendingCoinsHL={TrendingCoinsHL} />
+          <TopGainers TopCryptoGainers={TopCryptoGainers} />
+          <TopLosers TopCryptoLosers={TopCryptoLosers} />
+          <MostVotedCoins MostVotedCrytoCoins={MostVoted} />
+          <NewCoins NewCryptoCoin={NewCryptoCoin} />
+          <HighestCoinVolume CoinsByTradingVol={CoinsByTradingVol} />
+          <AllTimeHighPrice AllTimeHighCoinPrice={AllTimeHighCoinPrice} />
         </div>
       </div>
       <Footer />

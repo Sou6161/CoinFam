@@ -56,7 +56,7 @@ const CryptoExchanges = () => {
         <OnlyHeaderComp />
         <MainPageMarquee />
       </div>
-      <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
+      <div className="bg-[#0f172a] pb-16">
         <h1 className="ml-5 relative top-10 text-[6vw] xsmall:text-[4.5vw] small:text-[4vw] medium:text-[3vw] large:text-[2.5vw] xlarge:text-[2vw] text-yellow-400 font-semibold">
           Top Crypto Exchanges Ranked by Trust Score
         </h1>
@@ -67,44 +67,44 @@ const CryptoExchanges = () => {
           and OKX. Total tracked crypto exchange reserves currently stands at
           $244 Billion.
         </p>
-        <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] mt-[14vh] px-2">
+        <div className="bg-[#0f172a] mt-[14vh] px-2">
           {isLoading ? (
             <LoadingSpinner />
           ) : (
             <>
-              <div className="overflow-x-auto w-full 2xlarge:w-[90vw]  2xlarge:mx-auto border-2 border-yellow-400 rounded-lg">
-                <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
+              <div className="overflow-x-auto w-full 2xlarge:w-[90vw]  2xlarge:mx-auto border border-slate-700/60 rounded-lg">
+                <table className="min-w-full bg-slate-900/40 rounded-lg">
                   {/* Rest of the table code remains the same */}
-                  <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+                  <thead className="bg-teal-900">
                     <tr>
-                      <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                      <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider">
                         #
                       </th>
-                      <th className="sticky left-7 xsmall:left-10 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                      <th className="sticky left-7 xsmall:left-10 z-10 bg-teal-800 px-3 py-2 xsmall:px-6 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                         Exchange
                       </th>
-                      <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[10vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                      <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[10vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                         Trust Score
                       </th>
-                      <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[10vw]  bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-wrap text-white uppercase tracking-wider">
+                      <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[10vw]  bg-teal-900 text-left text-xs font-semibold text-wrap text-white uppercase tracking-wider">
                         24h Volume(Normalized)
                       </th>
-                      <th className="px-4 py-2 xsmall:px-6 xsmall:py-3 max-w-[30vw] whitespace-nowrap xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                      <th className="px-4 py-2 xsmall:px-6 xsmall:py-4 max-w-[30vw] whitespace-nowrap xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                         24h Volume
                       </th>
-                      <th className="px-4 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                      <th className="px-4 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                         Launched
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+                  <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
                     {CryptoExchangesList &&
                       CryptoExchangesList.map((coin, index) => (
-                        <tr key={coin.id} className="hover:bg-gray-50">
-                          <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+                        <tr key={coin.id} className="hover:bg-slate-800/40">
+                          <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-3 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
                             {(currentPage - 1) * coinsPerPage + index + 1}
                           </td>
-                          <td className="sticky left-7 xsmall:left-9 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 min-w-[150px] xsmall:max-w-[200px]">
+                          <td className="sticky left-7 xsmall:left-9 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 min-w-[150px] xsmall:max-w-[200px]">
                             <div className="flex items-center">
                               <Link to={`/en/exchanges/${coin.id}`}>
                                 <div className="flex items-center space-x-2">
@@ -113,19 +113,19 @@ const CryptoExchanges = () => {
                                     src={coin?.image}
                                     alt={coin.name}
                                   />
-                                  <span className="text-sm font-medium text-wrap text-gray-900">
+                                  <span className="text-sm font-medium text-wrap text-slate-100">
                                     {coin.name}
                                   </span>
                                 </div>
                               </Link>
                             </div>
                           </td>
-                          <td className="px-5 py-2 xsmall:px-6 xsmall:py-4 text-black font-bold whitespace-nowrap text-xs xsmall:text-sm">
+                          <td className="px-5 py-2 xsmall:px-6 xsmall:py-5 text-slate-100 font-bold whitespace-nowrap text-xs xsmall:text-sm">
                             <span className="bg-green-300 rounded-lg p-1">
                               {coin?.trust_score}/10
                             </span>
                           </td>
-                          <td className="px-8 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-bold">
+                          <td className="px-4 py-4 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-bold text-slate-100">
                             ₹{" "}
                             {coin?.trade_volume_24h_btc_normalized?.toLocaleString(
                               "en-IN",
@@ -135,7 +135,7 @@ const CryptoExchanges = () => {
                               }
                             )}
                           </td>
-                          <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-bold text-black">
+                          <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-bold text-slate-100">
                             <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                               ₹{" "}
                               {coin?.trade_volume_24h_btc?.toLocaleString(
@@ -147,7 +147,7 @@ const CryptoExchanges = () => {
                               )}
                             </h1>
                           </td>
-                          <td className="px-5 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-bold text-black ">
+                          <td className="px-5 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-bold text-slate-100 ">
                             <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                               {coin?.year_established}
                             </h1>

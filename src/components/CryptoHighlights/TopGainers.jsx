@@ -24,28 +24,28 @@ const TopGainers = ({TopCryptoGainers}) => {
         }
       }, [FinalTopGainers]);
   return (
-    <div className=" max-w-[95vw] mx-auto relative top-[13vh]  bg-white rounded-xl shadow-lg p-2 ">
+    <div className=" max-w-[95vw] mx-auto bg-slate-900/50 border border-slate-700/60 backdrop-blur-md rounded-xl shadow-lg p-4 ">
     {/* Header */}
-    <div className="flex items-center justify-between mb-4 p-2">
+    <div className="flex items-center justify-between mb-4 px-1">
       <div className="flex items-center gap-2">
         <BsGraphUp className="text-orange-500 text-xl" />
-        <h2 className="text-lg font-semibold text-black">Top Gainers </h2>
+        <h2 className="text-lg font-semibold text-slate-100">Top Gainers </h2>
       </div>
-      <button className="flex items-center text-gray-600 hover:text-gray-900">
+      <button className="flex items-center text-slate-400 hover:text-white">
         more
         <MdKeyboardArrowRight className="text-xl mt-1" />
       </button>
     </div>
 
     {/* Column Headers */}
-    <div className="flex justify-between text-sm font-semibold text-gray-800 pb-2 px-2">
+    <div className="flex justify-between text-sm font-semibold text-slate-300 pb-3 px-3">
       <span>Coin</span>
       <div className="flex gap-8">
         <span>Price</span>
         <span className="w-16 text-right">24h</span>
       </div>
     </div>
-    <div className=" border-t-gray-300 border-[1px]"></div>
+    <div className=" border-t-slate-700 border-[1px]"></div>
 
 
     {/* Coin List */}
@@ -54,20 +54,20 @@ const TopGainers = ({TopCryptoGainers}) => {
         FinalTopGainers.slice(0,8).map((coin) => (
           <div
             key={coin?.id}
-            className="flex items-center justify-between py-3 hover:bg-gray-50 rounded-lg px-2 cursor-pointer"
+            className="flex items-center justify-between py-3.5 hover:bg-slate-800/50 rounded-lg px-3 cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <img
                 src={coin?.image}
                 alt={coin?.name}
-                className="w-6 h-6 rounded-full border-[1px] border-black"
+                className="w-6 h-6 rounded-full border-[1px] border-slate-600"
               />
-              <span className="font-medium text-black">
+              <span className="font-medium text-slate-100">
                 {coin?.name}
               </span>
             </div>
 
-            <div className="flex gap-8 items-center text-black font-semibold">
+            <div className="flex gap-8 items-center text-slate-100 font-semibold">
               <span className="text-sm">
                 ₹
                 {coin?.current_price?.toLocaleString("en-IN", {

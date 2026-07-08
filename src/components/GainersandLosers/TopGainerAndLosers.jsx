@@ -52,7 +52,7 @@ const TopGainerAndLosers = () => {
           <div className="flex justify-end gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium"
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-slate-800/40 font-medium"
             >
               No
             </button>
@@ -96,7 +96,7 @@ const TopGainerAndLosers = () => {
 
   const renderWatchlistCell = (coin, index) => {
     return (
-      <td className="sticky left-0 z-20 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+      <td className="sticky left-0 z-20 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
         <div className="relative">
           <button
             onClick={(e) => {
@@ -223,7 +223,7 @@ const TopGainerAndLosers = () => {
         <OnlyHeaderComp />
         <MainPageMarquee />
       </div>
-      <div className=" bg-gradient-to-r from-[#3f4c6b] to-[#606c88] ">
+      <div className="bg-[#0f172a] pb-16">
         <h1 className="text-[6vw] xsmall:text-[5vw] small:text-[4.3vw] medium:text-[2.8vw] large:text-[2.8vw] xlarge:text-[2vw] 2xlarge:text-[1.7vw] text-cente text-yellow-400 ml-5 pt-10 pb-2 font-semibold">
           Top Crypto Gainers and Losers
         </h1>
@@ -236,40 +236,40 @@ const TopGainerAndLosers = () => {
         <h1 className=" relative top-[10vh] ml-5 font-semibold text-[6vw] xsmall:text-[5vw] small:text-[4vw] medium:text-[3vw] large:text-[2.5vw] xlarge:text-[2vw] 2xlarge:text-[1.5vw] text-center text-yellow-400">
           🚀 Top Gainers
         </h1>
-        <div className=" bg-gradient-to-r from-[#3f4c6b] to-[#606c88] mt-[14vh] px-2 ">
-          <div className="overflow-x-auto w-[92vw] medium:w-[70vw] large:w-[65vw] xlarge:w-[70vw] 2xlarge:w-[80vw]  mx-auto border-2 border-yellow-400 rounded-lg">
-            <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
-              <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+        <div className=" bg-[#0f172a] mt-[14vh] px-2 ">
+          <div className="overflow-x-auto w-[92vw] medium:w-[70vw] large:w-[65vw] xlarge:w-[70vw] 2xlarge:w-[80vw]  mx-auto border border-slate-700/60 rounded-lg">
+            <table className="min-w-full bg-slate-900/40 rounded-lg">
+              <thead className="bg-teal-900">
                 <tr>
-                  {/* <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-black uppercase tracking-wider w-8">
+                  {/* <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-slate-100 uppercase tracking-wider w-8">
                     ★
                   </th> */}
-                  <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider">
                     #
                   </th>
-                  <th className="sticky left-7 xsmall:left-8 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-center text-xs font-medium text-white  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                  <th className="sticky left-7 xsmall:left-8 z-10 bg-teal-800 px-3 py-2 xsmall:px-6 xsmall:py-4 text-center text-xs font-medium text-white  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                     Coin
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Price
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h
                   </th>
-                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Total Vol
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+              <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
                 {TopCryptoGainers &&
                   TopCryptoGainers.map((coin, index) => (
-                    <tr key={coin.id} className="hover:bg-gray-50">
+                    <tr key={coin.id} className="hover:bg-slate-800/40">
                       {/* {renderWatchlistCell(coin, index)} */}
-                      <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+                      <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
                         {(currentPage - 1) * coinsPerPage + index + 1}
                       </td>
-                      <td className="sticky left-7 xsmall:left-8 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 min-w-[150px] xsmall:max-w-[200px]">
+                      <td className="sticky left-7 xsmall:left-8 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 min-w-[150px] xsmall:max-w-[200px]">
                         <div className="flex items-center ">
                           <Link to={`/en/coins/${coin.id}`}>
                             <div className="flex items-center space-x-2 ">
@@ -278,14 +278,14 @@ const TopGainerAndLosers = () => {
                                 src={coin?.image}
                                 alt={coin.name}
                               />
-                              <span className="text-sm font-medium text-wrap  text-gray-900">
+                              <span className="text-sm font-medium text-wrap text-slate-100">
                                 {coin.name}
                               </span>
                             </div>
                           </Link>
                         </div>
                       </td>
-                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 text-black font-bold  whitespace-nowrap text-xs xsmall:text-sm">
+                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 text-slate-100 font-bold  whitespace-nowrap text-xs xsmall:text-sm">
                         ₹{" "}
                         {coin?.current_price?.toLocaleString("en-IN", {
                           minimumFractionDigits: 2,
@@ -293,13 +293,13 @@ const TopGainerAndLosers = () => {
                         })}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(
                           coin.price_change_percentage_24h
                         )}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-black">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-slate-100">
                         <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                           $
                           {coin.total_volume
@@ -317,42 +317,42 @@ const TopGainerAndLosers = () => {
         <h1 className=" relative top-[10vh] ml-5 font-semibold text-[6vw] xsmall:text-[5vw] small:text-[4vw] medium:text-[3vw] large:text-[2.5vw] xlarge:text-[2vw] 2xlarge:text-[1.5vw] text-center text-yellow-400">
           📉 Top Losers
         </h1>
-        <div className=" bg-gradient-to-r from-[#3f4c6b] to-[#606c88] mt-[14vh] px-2 ">
+        <div className=" bg-[#0f172a] mt-[14vh] px-2 ">
           <div className="overflow-x-auto mx-auto w-[92vw] medium:w-[70vw] large:w-[65vw] xlarge:w-[70vw] 2xlarge:w-[80vw] border-2 border-purple-500 rounded-lg">
-            <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
-              <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+            <table className="min-w-full bg-slate-900/40 rounded-lg">
+              <thead className="bg-teal-900">
                 <tr>
-                  {/* <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-black uppercase tracking-wider w-8">
+                  {/* <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-slate-100 uppercase tracking-wider w-8">
                     ★
                   </th> */}
-                  <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider">
                     #
                   </th>
-                  <th className="sticky left-7 xsmall:left-8 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-center text-xs font-medium text-white  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                  <th className="sticky left-7 xsmall:left-8 z-10 bg-teal-800 px-3 py-2 xsmall:px-6 xsmall:py-4 text-center text-xs font-medium text-white  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                     Coin
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Price
                   </th>
 
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h
                   </th>
 
-                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Total Vol
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+              <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
                 {TopCryptoLosers &&
                   TopCryptoLosers.map((coin, index) => (
-                    <tr key={coin.id} className="hover:bg-gray-50">
+                    <tr key={coin.id} className="hover:bg-slate-800/40">
                       {/* {renderWatchlistCell(coin, index)} */}
-                      <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+                      <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
                         {(currentPage - 1) * coinsPerPage + index + 1}
                       </td>
-                      <td className="sticky left-7 xsmall:left-8 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 min-w-[150px] xsmall:max-w-[200px]">
+                      <td className="sticky left-7 xsmall:left-8 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 min-w-[150px] xsmall:max-w-[200px]">
                         <div className="flex items-center">
                           <Link to={`/en/coins/${coin.id}`}>
                             <div className="flex items-center space-x-2">
@@ -361,14 +361,14 @@ const TopGainerAndLosers = () => {
                                 src={coin?.image}
                                 alt={coin.name}
                               />
-                              <span className="text-sm font-medium text-wrap text-gray-900">
+                              <span className="text-sm font-medium text-wrap text-slate-100">
                                 {coin.name}
                               </span>
                             </div>
                           </Link>
                         </div>
                       </td>
-                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 text-black font-bold  whitespace-nowrap text-xs xsmall:text-sm">
+                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 text-slate-100 font-bold  whitespace-nowrap text-xs xsmall:text-sm">
                         ₹{" "}
                         {coin?.current_price?.toLocaleString("en-IN", {
                           minimumFractionDigits: 2,
@@ -376,13 +376,13 @@ const TopGainerAndLosers = () => {
                         })}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(
                           coin.price_change_percentage_24h
                         )}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-black">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-slate-100">
                         <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                           $
                           {coin.total_volume

@@ -54,7 +54,7 @@ const NewCryptocurrencies = () => {
           <div className="flex justify-end gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium"
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-slate-800/40 font-medium"
             >
               No
             </button>
@@ -98,7 +98,7 @@ const NewCryptocurrencies = () => {
 
   const renderWatchlistCell = (coin, index) => {
     return (
-      <td className="sticky left-0 z-20 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+      <td className="sticky left-0 z-20 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
         <div className="relative">
           <button
             onClick={(e) => {
@@ -280,7 +280,7 @@ const NewCryptocurrencies = () => {
         <MainPageMarquee />
       </div>
 
-      <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] min-h-screen text-yellow-400">
+      <div className="bg-[#0f172a] min-h-screen text-yellow-400 pb-16">
         <h1 className="text-[6vw] xsmall:text-[5vw] small:text-[4.3vw] medium:text-[3.5vw] large:text-[2.8vw] xlarge:text-[2.4vw] 2xlarge:text-[2vw]  ml-5 pt-10 pb-2 font-semibold">
           New Cryptocurrencies
         </h1>
@@ -291,52 +291,52 @@ const NewCryptocurrencies = () => {
           listed in the last 30 days, you might be interested to know that Major
           Frog and MAKE have the highest trading volume over the last 24 hours.
         </p>
-        <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] mt-[10vh] px-2 ">
-          <div className="overflow-x-auto w-full border-2 border-yellow-400 rounded-lg">
-            <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
-              <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+        <div className="bg-[#0f172a] mt-[10vh] px-2 ">
+          <div className="overflow-x-auto w-full border border-slate-700/60 rounded-lg">
+            <table className="min-w-full bg-slate-900/40 rounded-lg">
+              <thead className="bg-teal-900">
                 <tr>
-                  {/* <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-black uppercase tracking-wider w-8">
+                  {/* <th className="sticky left-0 z-10 bg-gray-400 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-slate-100 uppercase tracking-wider w-8">
                     ★
                   </th> */}
-                  <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider">
                     #
                   </th>
-                  <th className="sticky left-7 xsmall:left-8 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-white  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                  <th className="sticky left-7 xsmall:left-8 z-10 bg-teal-800 px-3 py-2 xsmall:px-6 xsmall:py-4 text-left text-xs font-medium text-white  uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                     Coin
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Price
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     ATH(24h)
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h
                   </th>
 
-                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     FDV
                   </th>
 
-                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw]  backdrop-blur-md bg-gradient-to-br from-purple-300/50 to-indigo-400/50 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw]  backdrop-blur-md bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Total Vol
                   </th>
 
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50  backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] bg-teal-900  backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Last Added
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+              <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
                 {NewCryptocurrencies &&
                   NewCryptocurrencies.map((coin, index) => (
-                    <tr key={coin.id} className="hover:bg-gray-50">
+                    <tr key={coin.id} className="hover:bg-slate-800/40">
                       {/* {renderWatchlistCell(coin, index)} */}
-                      <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
+                      <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-500">
                         {(currentPage - 1) * coinsPerPage + index + 1}
                       </td>
-                      <td className="sticky left-7 xsmall:left-8 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 max-w-[150px] xsmall:max-w-[200px]">
+                      <td className="sticky left-7 xsmall:left-8 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 max-w-[150px] xsmall:max-w-[200px]">
                         <div className="flex items-center">
                           <Link to={`/en/coins/${coin.id}`}>
                             <div className="flex items-center space-x-2">
@@ -345,14 +345,14 @@ const NewCryptocurrencies = () => {
                                 src={coin?.image}
                                 alt={coin.name}
                               />
-                              <span className="text-sm font-medium text-gray-900 text-wrap truncate">
+                              <span className="text-sm font-medium text-slate-100 text-wrap truncate">
                                 {coin.name}
                               </span>
                             </div>
                           </Link>
                         </div>
                       </td>
-                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 text-black font-bold  whitespace-nowrap text-xs xsmall:text-sm">
+                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 text-slate-100 font-bold  whitespace-nowrap text-xs xsmall:text-sm">
                         ₹{" "}
                         {coin?.current_price?.toLocaleString("en-IN", {
                           minimumFractionDigits: 2,
@@ -360,16 +360,16 @@ const NewCryptocurrencies = () => {
                         })}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(coin.ath_change_percentage)}
                       </td>
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold">
                         {renderPercentageChange(
                           coin.price_change_percentage_24h
                         )}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-black">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-slate-100">
                         <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                           $
                           {coin.fully_diluted_valuation
@@ -378,7 +378,7 @@ const NewCryptocurrencies = () => {
                         </h1>
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-black">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-slate-100">
                         <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                           $
                           {coin.total_volume
@@ -387,7 +387,7 @@ const NewCryptocurrencies = () => {
                         </h1>
                       </td>
 
-                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-gray-400">
+                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-gray-400">
                         about {formatDate(coin?.last_updated)}
                       </td>
                     </tr>
@@ -396,15 +396,15 @@ const NewCryptocurrencies = () => {
             </table>
           </div>
 
-          <div className="flex justify-between bg-gradient-to-r from-[#3f4c6b] to-[#606c88] items-center mt-5  px-3 xsmall:px-6">
+          <div className="flex justify-between bg-[#0f172a] items-center mt-5  px-3 xsmall:px-6">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
             >
               Previous
             </button>
-            <span className="text-cyan-600 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
+            <span className="text-cyan-300 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-sm">
               Page {currentPage}
             </span>
             <button
@@ -412,7 +412,7 @@ const NewCryptocurrencies = () => {
               disabled={
                 NewCryptocurrencies && NewCryptocurrencies.length < coinsPerPage
               }
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
             >
               Next
             </button>

@@ -87,8 +87,8 @@ const AllCryptoNews = () => {
 
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center mb-8">
-          <button className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-lg shadow-2xl bg-gradient-to-br from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 transition-all duration-300 ease-out hover:scale-105">
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+          <button className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-lg shadow-2xl bg-teal-600 hover:from-purple-500 hover:to-blue-400 transition-all duration-300 ease-out hover:scale-105">
+            <span className="absolute inset-0 w-full h-full bg-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
             <Newspaper className="w-5 h-5 mr-2 relative z-10" />
             <span className="relative z-10">Latest Crypto News</span>
           </button>
@@ -112,7 +112,7 @@ const AllCryptoNews = () => {
                       "https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png";
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-slate-950/40"></div>
                 <div className="absolute bottom-2 left-2 flex items-center space-x-2 text-xs text-white bg-black/50 rounded-full px-3 py-1">
                   <Calendar className="w-3 h-3" />
                   <span>{formatPublishDate(article?.published_on)}</span>
@@ -139,7 +139,7 @@ const AllCryptoNews = () => {
                     href={article.url}
                     className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-all duration-200 group hover:shadow-lg hover:shadow-purple-500/20"
                   >
-                    <span className="text-black font-semibold">Read More</span>
+                    <span className="text-white font-semibold">Read More</span>
                     <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform text-white" />
                   </a>
                 </div>

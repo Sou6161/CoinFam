@@ -129,16 +129,7 @@ const MainPageMarquee = () => {
   );
 
   return (
-    <div className="relative w-full overflow-hidden bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900">
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-indigo-500/20 animate-gradient-x"></div>
-      
-      {/* Glow effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-500/30 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/30 rounded-full filter blur-3xl"></div>
-      </div>
-
+    <div className="relative w-full overflow-hidden bg-indigo-950 border-y border-indigo-800">
       {/* Marquee wrapper */}
       <div className="relative marquee-wrapper">
         <div className="track">
@@ -184,27 +175,9 @@ const MainPageMarquee = () => {
           animation-play-state: paused;
         }
 
-        .animate-gradient-x {
-          animation: gradient-x 15s linear infinite;
-        }
-
-        @keyframes gradient-x {
-          0%, 100% {
-            transform: translateX(0);
-            opacity: 0.2;
-          }
-          50% {
-            transform: translateX(-30%);
-            opacity: 0.4;
-          }
-        }
-
         @media (prefers-reduced-motion: reduce) {
           .track {
             animation-duration: 30s;
-          }
-          .animate-gradient-x {
-            animation: none;
           }
         }
       `}</style>

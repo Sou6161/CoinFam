@@ -30,17 +30,33 @@ const CryptoCategoriesByMC = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
+    const CACHE_KEY = "categoriesByMC";
     const FetchCategoriesList = async () => {
-      const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/categories?order=market_cap_desc",
-        CoinGeckoChaloApi
-      );
-      const CategoriesListData = await response.json();
-      setCategoriesList(CategoriesListData);
+      // Serve cached data instantly on repeat visits, then refresh in background.
+      const cached = sessionStorage.getItem(CACHE_KEY);
+      if (cached) {
+        setCategoriesList(JSON.parse(cached));
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+      }
+      try {
+        const response = await fetch(
+          "https://api.coingecko.com/api/v3/coins/categories?order=market_cap_desc",
+          CoinGeckoChaloApi
+        );
+        const CategoriesListData = await response.json();
+        if (Array.isArray(CategoriesListData)) {
+          setCategoriesList(CategoriesListData);
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify(CategoriesListData));
+        }
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     FetchCategoriesList();
-    setIsLoading(false);
   }, []);
 
   // Paginate data
@@ -49,10 +65,6 @@ const CryptoCategoriesByMC = () => {
     const endIndex = startIndex + coinsPerPage;
     return CategoriesList && CategoriesList.slice(startIndex, endIndex);
   };
-
-  useEffect(() => {
-    CategoriesList && console.log(CategoriesList);
-  }, [CategoriesList]);
 
   // Next page handler
   const handleNextPage = () => {
@@ -89,63 +101,64 @@ const CryptoCategoriesByMC = () => {
         <MainPageMarquee />
       </div>
 
-      <div className="bg-gradient-to-r from-[#3f4c6b] to-[#606c88] text-white ">
-        <h1 className=" ml-5 relative top-10 text-[5.5vw] xsmall:text-[5vw] small:text-[4vw] medium:text-[3.5vw] large:text-[2.9vw] xlarge:text-[2.5vw] 2xlarge:text-[2vw]  text-yellow-400">
+      <div className="bg-[#0f172a] text-white min-h-screen">
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
+        <h1 className="text-yellow-400 text-2xl small:text-3xl large:text-4xl font-bold">
           Top Crypto Categories By Market Cap
         </h1>
-        <p className=" text-sky-500  ml-5 relative top-10 mt-2 text-[4vw] xsmall:text-[3.3vw] small:text-[2.8vw] medium:text-[2.3vw]  large:text-[1.8vw] xlarge:text-[1.5vw] 2xlarge:text-[1.2vw]">
+        <p className="text-sky-300 text-sm small:text-base leading-relaxed mt-4 max-w-5xl">
           View the largest cryptocurrency categories based on market
           capitalization. The top categories are Layer 1 (L1), Proof of Work
           (PoW), and Smart Contract Platform. Compared to the previous day, the
           market cap of Layer 1 (L1) has increased by 0.8% while Proof of Work
           (PoW) has increased by 0.8%.
         </p>
-        <p className="text-sky-500 ml-5 relative top-10 mt-2 text-[4vw] xsmall:text-[3.3vw] small:text-[2.8vw] medium:text-[2.3vw] large:text-[1.8vw] xlarge:text-[1.5vw] 2xlarge:text-[1.2vw]">
+        <p className="text-sky-300 text-sm small:text-base leading-relaxed mt-3 max-w-5xl">
           Click on a cryptocurrency category to view cryptocurrencies listed
           within the category and their price performance.
         </p>
-        <div className=" bg-blac mt-[10vh] px-2 ">
-          <div className="overflow-x-auto w-full xsmall:w-[95vw]  xsmall:mx-auto border-2 border-yellow-400 shadow-lg rounded-lg">
-            <table className="min-w-full bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg">
-              <thead className="bg-gradient-to-r from-purple-900 to-indigo-900">
+        <div className="mt-8">
+          <div className="overflow-x-auto w-full xsmall:w-[95vw]  xsmall:mx-auto border border-slate-700/60 shadow-lg rounded-lg">
+            <table className="min-w-full bg-slate-900/40 rounded-xl">
+              <thead className="bg-teal-900">
                 <tr>
-                  <th className="sticky left-0 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-2 py-2 xsmall:px-3 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="sticky left-0 z-10 bg-teal-800 px-2 py-2 xsmall:px-3 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider">
                     #
                   </th>
-                  <th className="sticky left-8 xsmall:left-9 z-10 bg-gradient-to-br from-purple-300 to-indigo-400 px-3 py-2 xsmall:px-6 xsmall:py-3 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
+                  <th className="sticky left-8 xsmall:left-9 z-10 bg-teal-800 px-3 py-2 xsmall:px-6 xsmall:py-4 text-left text-xs font-medium text-white uppercase tracking-wider max-w-[120px] xsmall:max-w-[200px]">
                     Category
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Market Cap
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[20vw] xsmall:max-w-[30vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[20vw] xsmall:max-w-[30vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     24h Volume
                   </th>
-                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-3 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] large:w-[12vw] xlarge:w-[12vw] 2xlarge:w-[13vw] bg-gradient-to-br from-purple-300/50 to-indigo-400/50 backdrop-blur-md text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-3 py-2 xsmall:px-6 xsmall:py-4 max-w-[25vw] whitespace-nowrap xsmall:max-w-[30vw] large:w-[12vw] xlarge:w-[12vw] 2xlarge:w-[13vw] bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     Top 3 Coins
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-gradient-to-l from-[#2c3e50] to-[#bdc3c7] divide-y divide-gray-200">
+              <tbody className="bg-slate-900/40 divide-y divide-slate-700/50">
                 {paginatedData() &&
                   paginatedData().map((coin, index) => (
-                    <tr key={coin.id} className="hover:bg-gray-50">
-                      <td className="sticky left-0 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-black">
+                    <tr key={coin.id} className="hover:bg-slate-800/40">
+                      <td className="sticky left-0 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-slate-100">
                         {(currentPage - 1) * coinsPerPage + index + 1}
                       </td>
-                      <td className="sticky left-8 xsmall:left-9 z-10 bg-zinc-300/50 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-4 max-w-[150px] xsmall:max-w-[200px]">
+                      <td className="sticky left-8 xsmall:left-9 z-10 bg-slate-900/90 backdrop-blur-sm px-2 py-2 xsmall:px-3 xsmall:py-5 max-w-[150px] xsmall:max-w-[200px]">
                         <div className="flex items-center">
                           <Link to={`/en/categories/${coin.id}`}>
-                            <span className="text-[3.5vw] xsmall:text-sm 2xlarge:text-[1vw] font-semibold w-[20vw] h-[6vh]  whitespace-normal  xsmall:w-[33vw] text-black truncate ">
+                            <span className="text-[3.5vw] xsmall:text-sm 2xlarge:text-[1vw] font-semibold w-[20vw] h-[6vh]  whitespace-normal  xsmall:w-[33vw] text-slate-100 truncate ">
                               {coin.name}
                             </span>
                           </Link>
                         </div>
                       </td>
-                      <td className="px-3 py-2 font-bold xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm text-black">
+                      <td className="px-3 py-2 font-bold xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm text-slate-100">
                         $
                         {coin.market_cap
                           ? Number(coin.market_cap)
@@ -154,11 +167,11 @@ const CryptoCategoriesByMC = () => {
                           : "N/A"}
                       </td>
 
-                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-4  whitespace-nowrap text-xs xsmall:text-sm">
+                      <td className="px-3 py-2 xsmall:px-6 xsmall:py-5  whitespace-nowrap text-xs xsmall:text-sm">
                         {renderPercentageChange(coin.market_cap_change_24h)}
                       </td>
 
-                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-4 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-black">
+                      <td className="px-2 py-2 xsmall:px-6 xsmall:py-5 whitespace-nowrap text-xs xsmall:text-sm font-semibold text-slate-100">
                         <h1 className="inline-block px-1 xsmall:px-2 rounded-xl font-bold">
                           $
                           {coin.volume_24h
@@ -187,11 +200,11 @@ const CryptoCategoriesByMC = () => {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-2 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             Previous
           </button>
-          <span className="text-cyan-600 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-md  small:text-xl medium:text-xl">
+          <span className="text-cyan-300 ml-2 xsmall:ml-3 font-semibold text-lg xsmall:text-md  small:text-xl medium:text-xl">
             Page {currentPage}
           </span>
           <button
@@ -200,10 +213,11 @@ const CryptoCategoriesByMC = () => {
               currentPage >=
               Math.ceil(CategoriesList && CategoriesList.length / coinsPerPage)
             }
-            className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-3 xsmall:py-2 xsmall:px-4 rounded text-sm xsmall:text-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             Next
           </button>
+        </div>
         </div>
       </div>
       <Footer />

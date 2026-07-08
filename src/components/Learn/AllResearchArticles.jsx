@@ -48,7 +48,7 @@ const AllResearchArticles = () => {
 
   return (
     <>
-    <div className="min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
+    <div className="min-h-screen bg-[#0f172a]">
       <div className="top-0 z-50 bg-gray-900 shadow-xl">
         <OnlyHeaderComp />
         <MainPageMarquee />
@@ -56,8 +56,8 @@ const AllResearchArticles = () => {
 
       <main className="container mx-auto px-4 py-8">
         <div className="flex justify-center mb-8">
-          <button className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg transition-all duration-300 ease-out hover:scale-105">
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+          <button className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-lg text-white bg-teal-600 shadow-lg transition-all duration-300 ease-out hover:scale-105">
+            <span className="absolute inset-0 w-full h-full bg-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
             <MdArticle className="w-6 h-6 mr-2 relative z-10" />
             <span className="relative z-10">Latest Research Articles</span>
           </button>
@@ -67,7 +67,7 @@ const AllResearchArticles = () => {
           {articles.map((article) => (
             <article
               key={article.id}
-              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 hover:scale-102 hover:shadow-purple-500/20 border border-gray-700"
+              className="bg-slate-900/50 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 hover:scale-102 hover:shadow-purple-500/20 border border-gray-700"
             >
               <div className="p-6">
                 <h2 className="text-xl font-bold mb-4 text-white hover:text-purple-400 transition-colors">
@@ -104,7 +104,7 @@ const AllResearchArticles = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="text-black font-semibold">
+                    <span className="text-white font-semibold">
                       Read Article
                     </span>
                     <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform text-white" />

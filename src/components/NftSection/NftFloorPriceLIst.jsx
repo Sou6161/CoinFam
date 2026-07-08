@@ -52,7 +52,7 @@ const NftFloorPriceList = () => {
   };
 
   return (
-    <><div className="flex flex-col min-h-screen bg-gradient-to-r from-[#3f4c6b] to-[#606c88]">
+    <><div className="flex flex-col min-h-screen bg-[#0f172a]">
       {/* Header Section */}
       <div className="bg-black w-full">
         <OnlyHeaderComp />
@@ -95,7 +95,7 @@ const NftFloorPriceList = () => {
                     to={`/en/nft/${nft.id}`}
                     className="group block"
                   >
-                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 w-full backdrop-blur-sm rounded-xl p-6 transition-all duration-300 hover:bg-gray-700/50 hover:transform hover:-translate-y-1 hover:shadow-xl border border-gray-700/50">
+                    <div className="bg-slate-900/50 w-full backdrop-blur-sm rounded-xl p-6 transition-all duration-300 hover:bg-gray-700/50 hover:transform hover:-translate-y-1 hover:shadow-xl border border-gray-700/50">
                       <div className="flex items-start justify-between mb-4">
                         <h2 className="text-xl text-wrap font-semibold text-white group-hover:text-blue-400 transition-colors duration-300 truncate max-w-[80%]">
                           {nft.name}

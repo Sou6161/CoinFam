@@ -59,10 +59,9 @@ const CryptoNews = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-center mb-8">
-        <button className="group relative inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-cyan-600 to-blue-500 px-6 py-3 text-lg font-medium text-white hover:from-cyan-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105">
+        <button className="group inline-flex items-center justify-center rounded-lg bg-teal-600 hover:bg-teal-500 px-6 py-3 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105">
           <FaRegNewspaper className="w-5 h-5 mr-2" />
           Latest Crypto News
-          <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-br from-cyan-600 to-blue-500 opacity-0 blur transition duration-200 group-hover:opacity-20"></div>
         </button>
       </div>
 
@@ -70,7 +69,7 @@ const CryptoNews = () => {
         {cryptoNews.map((article, index) => (
           <div
             key={index}
-            className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-purple-500 transition-all duration-300 transform hover:-translate-y-1"
+            className="bg-slate-900/50 backdrop-blur-md border border-slate-700/60 rounded-xl overflow-hidden hover:border-teal-500 transition-all duration-300 transform hover:-translate-y-1"
           >
             <div className="aspect-w-16 aspect-h-9">
               <img
@@ -87,7 +86,7 @@ const CryptoNews = () => {
               <h2 className="text-lg font-semibold text-white mb-2 line-clamp-2">
                 {article.title}
               </h2>
-              <p className="text-amber-400 mb-4 line-clamp-3">
+              <p className="text-slate-400 mb-4 line-clamp-3">
                 {article.body.split(" ").slice(0, 20).join(" ")}...
               </p>
               <div className="space-y-1 mb-4">
@@ -100,9 +99,9 @@ const CryptoNews = () => {
               </div>
               <a
                 href={article.url}
-                className="inline-flex items-center justify-center w-full text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors duration-200"
+                className="inline-flex items-center justify-center w-full text-white bg-teal-600 hover:bg-teal-500 px-4 py-2 rounded-lg transition-colors duration-200"
               >
-                <span className="text-black font-semibold">Read More</span>
+                <span className="text-white font-semibold">Read More</span>
                 <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform text-white" />
               </a>
             </div>

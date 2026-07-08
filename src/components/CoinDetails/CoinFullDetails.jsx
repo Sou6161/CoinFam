@@ -103,6 +103,13 @@ const formatLargeNumber = (num) => {
   return num.toFixed(2);
 };
 
+// Module-level cache so chart data for a given coin/timeframe is fetched once
+// and reused instantly when switching timeframes or chart type.
+const chartCache = new Map();
+
+const daysForTimeFrame = (timeFrame) =>
+  ({ "24h": 1, "7d": 7, "1m": 30, "3m": 90, "1y": 365 }[timeFrame] ?? 7);
+
 const CoinFullDetails = ({ contractAddress, marketsData }) => {
   const { id } = useParams();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -321,9 +328,9 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
     const color = value >= 0 ? "text-green-500" : "text-red-500";
     const arrow = value >= 0 ? "▲" : "▼";
     return (
-      <span className={`${color} flex items-center justify-center`}>
+      <span className={`${color} flex items-center justify-center font-semibold`}>
         <span className="mr-1">{arrow}</span>
-        <span className="mr-5">{Math.abs(formattedValue)}%</span>
+        <span>{Math.abs(formattedValue)}%</span>
       </span>
     );
   };
@@ -352,7 +359,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
           : date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       const formattedPrice = payload[0].value / 1000;
       return (
-        <div className="border border-gray-200 p-2 rounded shadow">
+        <div className="bg-slate-800 border border-slate-700 text-white p-2 rounded shadow-lg">
           <p className="text-sm">{formattedDate}</p>
           <p className="text-sm font-bold">{`Price: ${formattedPrice.toFixed(
             1
@@ -433,26 +440,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
   useEffect(() => {
     const FetchCoinChart = async () => {
-      let days;
-      switch (timeFrame) {
-        case "24h":
-          days = 1;
-          break;
-        case "7d":
-          days = 7;
-          break;
-        case "1m":
-          days = 30;
-          break;
-        case "3m":
-          days = 90;
-          break;
-        case "1y":
-          days = 365;
-          break;
-        default:
-          days = 7;
-      }
+      const days = daysForTimeFrame(timeFrame);
       let precision;
       const price = CoinDetails?.market_data?.current_price?.usd;
       if (price < 0.0001) {
@@ -465,41 +453,42 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
         precision = 2;
       }
       precision = precision || 2;
+      const cacheKey = `ohlc-${id}-${days}-${precision}`;
+      if (chartCache.has(cacheKey)) {
+        setCoinChartDetails(chartCache.get(cacheKey));
+        return;
+      }
       const chartResponse = await fetch(
         `https://api.coingecko.com/api/v3/coins/${id}/ohlc?vs_currency=usd&days=${days}&precision=${precision}`,
         CoinGeckoYogeshApi
       );
       const chartdata = await chartResponse.json();
+      if (Array.isArray(chartdata)) chartCache.set(cacheKey, chartdata);
       setCoinChartDetails(chartdata);
     };
     FetchCoinChart();
-  }, [timeFrame, id, CoinDetails, CoinGeckoYogeshApi]);
+  }, [timeFrame, id, CoinDetails]);
 
   useEffect(() => {
     CoinChartDetails && console.log(CoinChartDetails, `${CoinDetails?.name}`);
   }, [CoinChartDetails]);
 
   useEffect(() => {
+    const applyMcap = (marketCaps) => {
+      setCoinMcapDetails(marketCaps);
+      setLowestMarketCap(Math.min(...marketCaps.map((item) => item[1])));
+      setHighestMarketCap(Math.max(...marketCaps.map((item) => item[1])));
+      setXAxisDomain([
+        Math.min(...marketCaps.map((item) => item[0])),
+        Math.max(...marketCaps.map((item) => item[0])),
+      ]);
+    };
     const FetchCoinMCap = async () => {
-      let days;
-      switch (timeFrame) {
-        case "24h":
-          days = 1;
-          break;
-        case "7d":
-          days = 7;
-          break;
-        case "1m":
-          days = 30;
-          break;
-        case "3m":
-          days = 90;
-          break;
-        case "1y":
-          days = 365;
-          break;
-        default:
-          days = 7;
+      const days = daysForTimeFrame(timeFrame);
+      const cacheKey = `mcap-${id}-${days}`;
+      if (chartCache.has(cacheKey)) {
+        applyMcap(chartCache.get(cacheKey));
+        return;
       }
       const response = await fetch(
         `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=${
@@ -509,26 +498,13 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
       );
       const CoinMCapData = await response.json();
       if (CoinMCapData && CoinMCapData?.market_caps) {
-        setCoinMcapDetails(CoinMCapData?.market_caps);
-        const lowest = Math.min(
-          ...CoinMCapData?.market_caps.map((item) => item[1])
-        );
-        setLowestMarketCap(lowest);
-        const highest = Math.max(
-          ...CoinMCapData?.market_caps.map((item) => item[1])
-        );
-        setHighestMarketCap(highest);
-        const minTime = Math.min(
-          ...CoinMCapData?.market_caps.map((item) => item[0])
-        );
-        const maxTime = Math.max(
-          ...CoinMCapData?.market_caps.map((item) => item[0])
-        );
-        setXAxisDomain([minTime, maxTime]);
+        chartCache.set(cacheKey, CoinMCapData.market_caps);
+        applyMcap(CoinMCapData.market_caps);
       }
     };
     FetchCoinMCap();
-  }, [timeFrame, id, CoinGeckoYogeshApi]);
+  }, [timeFrame, id]);
+
 
   const getPrecision = (value) => {
     if (value < 0.0000000001) {
@@ -620,23 +596,33 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
     TrendingCoins && console.log(TrendingCoins, "Trending Coins");
   }, [TrendingCoins]);
 
+  if (!CoinDetails) {
+    return (
+      <>
+        <div>
+          <OnlyHeaderComp />
+          <MainPageMarquee />
+        </div>
+        <div className="w-full min-h-screen bg-slate-900 flex flex-col items-center justify-center gap-4">
+          <div className="w-14 h-14 border-4 border-slate-700 border-t-teal-500 rounded-full animate-spin"></div>
+          <p className="text-slate-400 font-medium animate-pulse">
+            Loading coin data...
+          </p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <div>
         <OnlyHeaderComp />
         <MainPageMarquee />
       </div>
-      <div className="w-full overflow-x-hidden  xsmall:overflow-x-hidden min-h-screen bg-gradient-to-r from-gray-900 to-black text-white">
+      <div className="w-full overflow-x-hidden  xsmall:overflow-x-hidden min-h-screen bg-slate-900 text-white">
         {/* Glass-morphism card container */}
-        <div
-          className="mx-2 mt-0  relative top-2 p-3 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 shadow-2xl
-        xsmall:mx-6
-        small:mx-8
-        medium:mx-12 medium:p-8
-        large:mx-16
-        xlarge:mx-auto xlarge:max-w-7xl
-        2xlarge:max-w-[1400px]"
-        >
+        <div className="max-w-6xl mx-auto mt-6 p-5 medium:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 shadow-2xl">
           {/* Header Section */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -649,7 +635,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
               />
               <div>
                 <h1
-                  className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent
+                  className="text-2xl font-bold text-cyan-400
                 xsmall:text-3xl
                 medium:text-4xl"
                 >
@@ -666,14 +652,14 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             <div className="relative">
               {/* <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="group p-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
+                className="group p-2 rounded-full bg-slate-800/40 hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
               >
                 <FaStar className="w-5 h-5 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />
               </button> */}
 
               {showDropdown && (
                 <div className="absolute right-0 mt-2 w-64 rounded-xl bg-gray-800/90 backdrop-blur-lg border border-white/10 shadow-2xl p-4 z-10">
-                  <button className="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-white font-medium">
+                  <button className="w-full px-4 py-2 rounded-lg bg-teal-600 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-white font-medium">
                     Add to Portfolio
                   </button>
                   <p className="mt-2 text-sm text-gray-400 text-center">
@@ -692,7 +678,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
           large:grid-cols-3"
           >
             {/* USD Price Card */}
-            <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10">
+            <div className="p-4 rounded-xl bg-slate-800/40 border border-white/10">
               <h2 className="text-gray-400 font-medium mb-2">Price USD</h2>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold">
@@ -708,7 +694,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </div>
 
             {/* BTC Price Card */}
-            <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10">
+            <div className="p-4 rounded-xl bg-slate-800/40 border border-white/10">
               <h2 className="text-gray-400 font-medium mb-2">Price BTC</h2>
               <div className="flex items-baseline gap-2">
                 <FaBitcoin className="text-[#F7931A] text-2xl" />
@@ -726,7 +712,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </div>
 
             {/* Market Stats Card */}
-            <div className="p-5 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10">
+            <div className="p-5 rounded-xl bg-slate-800/40 border border-white/10">
               <h2 className="text-gray-400 font-medium mb-4">
                 24h Market Stats
               </h2>
@@ -754,7 +740,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
           </div>
 
           {/* Price Chart Preview */}
-          {/* <div className="mt-8 p-6 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10">
+          {/* <div className="mt-8 p-6 rounded-xl bg-slate-800/40 border border-white/10">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold">Price Chart</h2>
               <div className="flex gap-2">
@@ -878,10 +864,10 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
           24 Hour Range
         </span> */}
 
-        <div className=" mt-10 flex flex-col w-full max-w-screen-2xl mx-auto 2xlarge:ml-[8vw] px-4">
+        <div className="mt-10 flex flex-col w-full max-w-6xl mx-auto px-4">
           {/* Header Section */}
           <div className="flex flex-col gap-6 mb-8">
-            <h1 className="text-2xl font-bold md:text-3xl lg:text-4xl">
+            <h1 className="text-2xl font-bold md:text-3xl">
               {CoinDetails?.name} Price Chart{" "}
               <span className="text-gray-500">
                 ({CoinDetails?.symbol?.toUpperCase()})
@@ -899,8 +885,8 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                     className={`px-4 py-2 rounded-lg font-medium transition-all
                   ${
                     timeFrame === option.value
-                      ? "bg-blue-600 text-black shadow-lg"
-                      : "bg-gray-600 hover:bg-gray-200"
+                      ? "bg-teal-600 text-white shadow-lg"
+                      : "bg-slate-700 text-slate-200 hover:bg-slate-600"
                   }`}
                   >
                     {option.label}
@@ -917,8 +903,8 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                     className={`px-4 py-2 rounded-lg font-medium capitalize transition-all
                   ${
                     chartType === type
-                      ? "bg-blue-600 text-black shadow-lg"
-                      : "bg-gray-600 hover:bg-gray-200"
+                      ? "bg-teal-600 text-white shadow-lg"
+                      : "bg-slate-700 text-slate-200 hover:bg-slate-600"
                   }`}
                   >
                     {type === "marketCap" ? "Market Cap" : "Price"}
@@ -929,14 +915,14 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
           </div>
 
           {/* Chart Container */}
-          <div className="w-full 2xlarge:w-[90vw] bg-blue-900/10 rounded-xl shadow-lg p-4 h-[500px]">
+          <div className="w-full bg-slate-800/40 border border-white/10 rounded-xl shadow-lg p-4 h-[500px]">
             <ResponsiveContainer width="100%" height="100%">
               {chartType === "price" ? (
                 <LineChart data={chartData2}>
                   <CartesianGrid
                     vertical={false}
                     strokeDasharray="1 1"
-                    stroke="#f0f0f0"
+                    stroke="#334155"
                   />
                   <XAxis
                     dataKey="time"
@@ -974,7 +960,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                   <CartesianGrid
                     vertical={false}
                     strokeDasharray="3 3"
-                    stroke="#f0f0f0"
+                    stroke="#334155"
                   />
                   <XAxis
                     dataKey="0"
@@ -1050,27 +1036,30 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </ResponsiveContainer>
           </div>
         </div>
-        <div className="w-full max-w-screen-2xl mx-auto mt-5 px-4">
+        <div className="w-full max-w-6xl mx-auto mt-10 px-4">
           {/* Main Container with Grid Layout for larger screens */}
-          <div className="flex flex-col xlarge:grid xlarge:grid-cols-2 xlarge:gap-8 2xlarge:gap-10 2xlarge:ml-[8vw] 2xlarge:mt-14">
+          <div className="grid grid-cols-1 xlarge:grid-cols-2 gap-8">
             {/* Left Column */}
             <div className="flex flex-col gap-6">
               {/* Price Change Timeframes */}
-              <div className="w-full bg-white/10 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/20 mb-6">
-                <div className="grid grid-cols-4 gap-2 p-4">
+              <div className="w-full bg-slate-800/40 backdrop-blur-md rounded-xl shadow-lg border border-white/10 p-4">
+                <h2 className="text-sm font-semibold text-slate-400 mb-4">
+                  Price Change
+                </h2>
+                <div className="grid grid-cols-3 gap-3">
                   {timeframes.map((timeframe) => (
                     <div
                       key={timeframe.label}
-                      className="flex flex-col items-center"
+                      className="flex flex-col items-center gap-1.5 rounded-lg bg-slate-900/50 border border-white/10 p-3"
                     >
-                      <div className="w-full text-center font-semibold bg-yellow-600/90 text-black p-2 rounded-t-lg">
+                      <span className="text-xs font-medium uppercase tracking-wide text-slate-400">
                         {timeframe.label}
-                      </div>
-                      <div className="w-full ml-5  text-center p-2  font-mono text-sm xlarge:text-base">
+                      </span>
+                      <span className="font-mono text-sm">
                         {formatPercentage(
                           CoinDetails?.market_data?.[timeframe.dataKey]?.usd
                         )}
-                      </div>
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -1081,15 +1070,15 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                 <h2 className="text-xl font-bold xlarge:text-2xl">
                   {CoinDetails?.name} Converter
                 </h2>
-                <div className="bg-white rounded-xl shadow-lg p-6">
+                <div className="bg-slate-800/40 border border-white/10 rounded-xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-lg font-bold text-gray-800">
+                    <span className="text-lg font-bold text-slate-100">
                       {CoinDetails?.symbol?.toUpperCase()}
                     </span>
                     <div className="relative">
                       <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="flex items-center gap-2 px-4 py-2 bg-purple-500 border border-gray-200 rounded-lg hover:bg-black transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-teal-600 border border-slate-600 text-white rounded-lg hover:bg-teal-500 transition-colors"
                       >
                         <span className="font-medium">
                           {selectedCurrency.toUpperCase()}
@@ -1097,11 +1086,11 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                         <ChevronDown size={18} />
                       </button>
                       {isOpen && (
-                        <div className="absolute right-0 mt-2 w-32 max-h-60 overflow-y-auto bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                        <div className="absolute right-0 mt-2 w-32 max-h-60 overflow-y-auto bg-slate-800 rounded-lg shadow-xl border border-slate-700 z-50">
                           {currencies.map((currency) => (
                             <button
                               key={currency}
-                              className="w-full px-4 py-2 text-left hover:bg-gray-50 text-gray-700"
+                              className="w-full px-4 py-2 text-left hover:bg-slate-700 text-slate-200"
                               onClick={() => handleCurrencyChange(currency)}
                             >
                               {currency.toUpperCase()}
@@ -1116,10 +1105,10 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                     inputMode="decimal"
                     value={amount}
                     onChange={handleAmountChange}
-                    className="w-full px-4 py-3 text-black font-semibold text-lg border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
+                    className="w-full px-4 py-3 bg-slate-900/60 text-white font-semibold text-lg border border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent placeholder-slate-500 mb-4"
                     placeholder="Enter amount"
                   />
-                  <div className="text-2xl font-bold text-red-500">
+                  <div className="text-2xl font-bold text-teal-400">
                     {!isNaN(convertedAmount)
                       ? convertedAmount.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
@@ -1137,7 +1126,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
               <h2 className="text-xl font-bold xlarge:text-2xl">
                 {CoinDetails?.name} Figures
               </h2>
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="bg-slate-800/40 border border-white/10 rounded-xl shadow-lg p-6">
                 <div className="grid gap-4">
                   {[
                     {
@@ -1172,12 +1161,12 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                   ].map((item, index) => (
                     <div
                       key={item.label}
-                      className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                      className="flex items-center justify-between py-3 border-b border-slate-700/60 last:border-0"
                     >
-                      <span className="text-gray-600 font-medium">
+                      <span className="text-slate-400 font-medium">
                         {item.label}
                       </span>
-                      <span className="text-gray-900 font-semibold">
+                      <span className="text-slate-100 font-semibold">
                         {item.value}
                       </span>
                     </div>
@@ -1187,14 +1176,14 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </div>
           </div>
         </div>
-        <div className="w-full from-gray-900 to-black ">
-          <div className="max-w-4xl mx-auto px-4 py-8 2xlarge:ml-[8vw]">
-            <div className="space-y-6">
-              <h1 className="text-3xl font-bold text-white mb-8">Info</h1>
+        <div className="w-full bg-slate-900">
+          <div className="max-w-6xl mx-auto px-4 py-8">
+            <div className="grid grid-cols-1 medium:grid-cols-2 gap-4">
+              <h1 className="text-3xl font-bold text-white mb-2 medium:col-span-2">Info</h1>
 
               {/* Contract Section */}
               {CoinDetails?.detail_platforms?.ethereum?.contract_address && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <span className="text-xl text-white mb-4 medium:mb-0">
                       Contract
@@ -1225,7 +1214,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
               {/* Website Section */}
               {(homepage || announcementUrl) && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <h2 className="text-xl text-white mb-4 medium:mb-0">
                       Website
@@ -1252,7 +1241,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
               {/* Explorers Section */}
               {explorers.length > 0 && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <h2 className="text-xl text-white mb-4 medium:mb-0">
                       Explorers
@@ -1290,7 +1279,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
               )}
 
               {/* Community Section */}
-              <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+              <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                 <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                   <h2 className="text-xl text-white mb-4 medium:mb-0">
                     Community
@@ -1325,7 +1314,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
               </div>
 
               {/* Search Section */}
-              <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+              <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                 <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                   <h2 className="text-xl text-white mb-4 medium:mb-0">
                     Search on
@@ -1341,7 +1330,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
               {/* Source Code Section */}
               {githubUrl && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <h2 className="text-xl text-white mb-4 medium:mb-0">
                       Source Code
@@ -1362,7 +1351,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
               {/* API ID Section */}
               {CoinDetails?.id && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <h2 className="text-xl text-white mb-4 medium:mb-0">
                       API ID
@@ -1384,7 +1373,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
               {/* Chains Section */}
               {ecosystemCategory && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <h2 className="text-xl text-white mb-4 medium:mb-0">
                       Chains
@@ -1424,7 +1413,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
 
               {/* Categories Section */}
               {nonEcosystemCategory && (
-                <div className="bg-gray-800 rounded-lg p-6 space-y-4 2xlarge:w-[30vw]">
+                <div className="bg-slate-800/40 border border-white/10 rounded-lg p-6 space-y-4">
                   <div className="flex flex-col medium:flex-row medium:items-center justify-between">
                     <h2 className="text-xl text-white mb-4 medium:mb-0">
                       Categories
@@ -1468,87 +1457,26 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
           </div>
         </div>
 
-        <div className="min-h-screen bg-gray-00 text-white p-4 xsmall:p-5 small:p-6 medium:p-7 large:p-8">
-          {/* Sentiment Section */}
-          <div className="bg-gray-00 rounded-xl p-4 xsmall:p-5 small:p-6 mb-8  2xlarge:relative 2xlarge:bottom-[130vh] 2xlarge:left-[32vw]">
-            <div className="max-w-4xl mx-auto">
-              <h1 className="text-[4vw] xsmall:text-lg small:text-[2.5vw] medium:text-[2.2vw] large:text-[2.3vw] xlarge:text-[1.5vw] 2xlarge:text-[1.2vw] font-bold mb-6">
-                How Do You Feel About{" "}
-                <span className="text-[5vw] xsmall:text-xl small:text-[2.5vw] medium:text-[2.2vw] large:text-[2.2vw] xlarge:text-[1.5vw] 2xlarge:text-[1.2vw] text-lime-400">
-                  {CoinDetails?.symbol}
-                </span>
-                ?
-              </h1>
-
-              {CoinDetails?.sentiment_votes_up_percentage !== null ? (
-                <div className="space-y-6">
-                  <div className="flex items-center gap-2 text-[3.5vw] xsmall:text-sm small:text-base medium:text-lg large:text-xl">
-                    <span>The Community is </span>
-                    {CoinDetails?.sentiment_votes_up_percentage >
-                    CoinDetails?.sentiment_votes_down_percentage ? (
-                      <div className="flex items-center gap-1 text-green-400 font-bold text-[4.5vw] xsmall:text-base small:text-lg medium:text-xl large:text-2xl">
-                        <MdTrendingUp className="text-2xl" />
-                        <span>Bullish</span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-1 text-red-500 font-bold text-[4.5vw] xsmall:text-base small:text-lg medium:text-xl large:text-2xl">
-                        <MdTrendingDown className="text-2xl" />
-                        <span>Bearish</span>
-                      </div>
-                    )}
-                    <span>about {CoinDetails?.name}</span>
-                  </div>
-
-                  <div className="flex mt-5 space-x-4 xsmall:space-x-6 small:space-x-8 medium:space-x-10">
-                    <button className="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-[3vw] xsmall:text-[2.5vw] small:text-[2.5vw] medium:text-base large:text-lg">
-                      <MdTrendingUp />
-                      <span>Bullish</span>
-                    </button>
-                    <button className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-[3vw] xsmall:text-[2.5vw] small:text-sm medium:text-base large:text-lg">
-                      <MdTrendingDown />
-                      <span>Bearish</span>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  <p className="text-[3vw] xsmall:text-sm small:text-base medium:text-lg text-gray-400 flex items-center gap-2">
-                    <MdInfoOutline />
-                    Be the first to vote and share this around.
-                  </p>
-                  <div className="flex mt-5 space-x-4 xsmall:space-x-6 small:space-x-8 medium:space-x-10">
-                    <button className="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-[3vw] xsmall:text-[2.5vw] small:text-[2.5vw] medium:text-base large:text-lg">
-                      <MdTrendingUp />
-                      <span>Vote Bullish</span>
-                    </button>
-                    <button className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-[3vw] xsmall:text-[2.5vw] small:text-sm medium:text-base large:text-lg">
-                      <MdTrendingDown />
-                      <span>Vote Bearish</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
+        <div className="max-w-6xl mx-auto px-4 py-8 text-white space-y-8">
+          
           {/* About Section */}
           {description && (
-            <div className="bg-gray-00 from-gray-900 to-black rounded-xl p-4 xsmall:p-5 small:p-6 mb-8 ">
-              <div className="max-w-4xl mx-auto 2xlarge:relative 2xlarge:bottom-[30vh] 2xlarge:right-[14vw]">
-                <h2 className="text-[6vw] xsmall:text-[4vw] small:text-[3vw] medium:text-[2.5vw] large:text-[2.2vw] 2xlarge:text-[1.5vw] font-bold mb-6">
+            <div className="bg-slate-800/40 border border-white/10 rounded-xl p-6">
+              <div>
+                <h2 className="text-2xl font-bold mb-6">
                   About
                 </h2>
                 <div
-                  className="leading-10 w-[90vw] mt-5 small:w-[80vw] large:w-[70vw] large:text-[1.5vw] xlarge:w-[80vw] xlarge:text-[1.2vw] 2xlarge:w-[40vw 2xlarge:text-[1vw]"
+                  className="leading-8 mt-2 text-slate-300"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               </div>
             </div>
           )}
           {/* Markets Section */}
-          <div className="bg-gray-800 rounded-xl p-4 xsmall:p-5 small:p-6 shadow-lg 2xlarge:relative 2xlarge:bottom-[30vh] 2xlarge:left-[7vw] 2xlarge:w-[85vw] ">
+          <div className="bg-slate-800/40 border border-white/10 rounded-xl p-6 shadow-lg">
             <div className="flex flex-col small:flex-row justify-between items-start small:items-center mb-6">
-              <h2 className="text-[6vw] xsmall:text-[4vw] medium:text-[2.5vw] xlarge:text-[1.8vw] font-bold mb-4 small:mb-0">
+              <h2 className="text-2xl font-bold mb-4 small:mb-0">
                 <span className="flex items-center gap-2">
                   <FaExchangeAlt />
                   {CoinDetails?.name} Markets
@@ -1692,9 +1620,9 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
               </table>
             </div>
           </div>
-          <div className="mt-5 ml-5 flex justify-between items-center xsmall:ml-20 small:ml-[20vw] medium:ml-[25vw] xlarge:relative xlarge:right-[15vw] 2xlarge:relative 2xlarge:right-[15vw] xlarge:w-full  2xlarge:bottom-[30vh] ">
+          <div className="mt-6 flex justify-between items-center">
             <button
-              className="Paginationbutton xlarge:left-[25vw]"
+              className="Paginationbutton"
               onClick={handlePreviousPage}
               disabled={disablePrevious}
             >
@@ -1704,9 +1632,7 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </button>
             <span>Page {currentPage}</span>
             <button
-              className={`Paginationbutton mr-[10vw] small:mr-[20vw] medium:mr-[30vw] large:mr-[25vw] xlarge:right-[20vw] ${
-                disableNext ? "disabled-yellow" : ""
-              }`}
+              className={`Paginationbutton `}
               onClick={handleNextPage}
               disabled={disableNext}
             >
@@ -1716,27 +1642,27 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </button>
           </div>
         </div>
-        <div className=" relative w-[90vw] xlarge:left-20  2xlarge:-mt-[30vh]  left-5">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="mt-10">
             <CoinNewsInDetails />
           </div>
         </div>
-        <div className="p-4 relative left-5 xlarge:left-[6vw]  top-[3vh] w-full xsmall:max-w-[90%] small:max-w-[80%] medium:max-w-2xl  large:max-w-[70vw] xlarge:max-w-[100vw] xlarge:top-[5vh]  2xlarge:max-w-[80vw] 2xlarge:left-[12vw] 2xlarge:top-[5vh]">
+        <div className="max-w-6xl mx-auto px-4 mt-10">
           {/* Header */}
-          <h1 className="text-[6vw] xsmall:text-[4vw] small:text-[4vw] medium:text-[3vw] large:text-[2.6vw] xlarge:text-[1.7vw] font-semibold mb-4">
+          <h1 className="text-2xl font-bold mb-4">
             Trending Coins
           </h1>
 
           {/* Main Container */}
-          <div className="container -ml-5  px-4 py-6">
+          <div className="py-6">
             {/* Grid Layout */}
             <div className="grid grid-cols-1 small:grid-cols-2 large:grid-cols-2 xlarge:grid-cols-4 gap-4">
               {/* Coin Cards */}
               {TrendingCoins?.map((coin, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-xl p-4 
-                border border-zinc-700 hover:border-purple-500 
+                  className="bg-slate-900/50 rounded-xl p-4 
+                border border-slate-700 hover:border-teal-500 
                 transform transition-all duration-300 hover:scale-[1.02]
                 shadow-lg hover:shadow-purple-500/20"
                 >
@@ -1823,12 +1749,12 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
             </div>
           </div>
         </div>
-        <div className="relative mb-32 top-[5vh] left-5 xsmall:top-[10vh] small:top-[10vh] small:left-[5vw] medium:top-[10vh] medium:left-[5vw] large:left-[4vw] xlarge:left-[7vw] xlarge:top-[8vh] 2xlarge:top-[5vh] 2xlarge:left-[13vw]">
-          <h1 className="text-[4.5vw] xsmall:text-[3.5vw] small:text-[3vw] medium:text-[2.5vw] large:text-[2vw] xlarge:text-[1.5vw] 2xlarge:text-[1.2vw] text-blue-700 font-semibold">
+        <div className="max-w-6xl mx-auto px-4 mt-10 mb-24">
+          <h1 className="text-xl medium:text-2xl text-sky-400 font-semibold">
             {CoinDetails?.name} ({CoinDetails?.symbol.toUpperCase()}) price has
             increased today.
           </h1>
-          <p className="w-[90vw] xsmall:w-[90vw] small:w-[85vw] medium:w-[70vw]  2xlarge:w-[80vw] 2xlarge:text-[1vw] leading-7 mt-5 text-gray-500">
+          <p className="max-w-4xl leading-8 mt-4 text-slate-400">
             The price of {CoinDetails?.name} (
             {CoinDetails?.symbol.toUpperCase()}) is{" "}
             <span className="text-amber-200">
