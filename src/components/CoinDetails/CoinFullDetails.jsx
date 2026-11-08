@@ -1564,7 +1564,9 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                             ? `₹${(
                                 market?.converted_last?.usd * usdToInrRate
                               ).toFixed(2)}`
-                            : `$${market?.converted_last?.usd.toFixed(2)}`}
+                            : market?.converted_last?.usd != null
+                            ? `$${market.converted_last.usd.toFixed(2)}`
+                            : "N/A"}
                         </td>
                         <td className="p-2 whitespace-nowrap">
                           {`${(market?.bid_ask_spread_percentage * 100).toFixed(
@@ -1572,13 +1574,19 @@ const CoinFullDetails = ({ contractAddress, marketsData }) => {
                           )}%`}
                         </td>
                         <td className="p-2 whitespace-nowrap hidden large:table-cell">
-                          {`$${market?.cost_to_move_up_usd.toLocaleString()}`}
+                          {market?.cost_to_move_up_usd != null
+                            ? `$${market.cost_to_move_up_usd.toLocaleString()}`
+                            : "N/A"}
                         </td>
                         <td className="p-2 whitespace-nowrap hidden large:table-cell">
-                          {`$${market?.cost_to_move_down_usd.toLocaleString()}`}
+                          {market?.cost_to_move_down_usd != null
+                            ? `$${market.cost_to_move_down_usd.toLocaleString()}`
+                            : "N/A"}
                         </td>
                         <td className="p-2 whitespace-nowrap">
-                          {`$${market?.converted_volume?.usd.toLocaleString()}`}
+                          {market?.converted_volume?.usd != null
+                            ? `$${market.converted_volume.usd.toLocaleString()}`
+                            : "N/A"}
                         </td>
                         <td className="p-2 whitespace-nowrap hidden medium:table-cell">
                           <div className="flex items-center gap-2">
